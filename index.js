@@ -10,6 +10,6 @@ function setup() {
 
 
 function draw() {
-    boi.draw();
     background("lightgrey");
+    boi.draw();
 }
