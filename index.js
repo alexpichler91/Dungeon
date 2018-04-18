@@ -1,1 +1,8 @@
-boi
+function setup() {
+
+}
+
+
+function draw() {
+
+}
