@@ -17,7 +17,7 @@ function setup() {
 
 
 function draw() {
+    background("lightgrey");
     boi.draw();
     rooms[0][0].draw();
-    background("lightgrey");
 }
