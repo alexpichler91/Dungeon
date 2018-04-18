@@ -1,2 +1,2 @@
 # Dungeon
-Pickly and speedy am 🅱️n
+# speedy-chan = weak
