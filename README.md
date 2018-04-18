@@ -1,2 +1,2 @@
 # Dungeon
-# speedy-chan = weak
+Waaaaarum san mia so guad in JS
