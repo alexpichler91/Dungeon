@@ -21,8 +21,8 @@ function Player() {
         this.RoomCollider();
         this.acc.mult(0.95)
         this.pos.add(this.acc)
-        
-        
+
+
         push()
         translate(this.pos.x, this.pos.y)
         fill("red");
@@ -31,7 +31,7 @@ function Player() {
         ellipse(0,0,this.size,this.size)
         pop()
     }
-    
+
     this.RoomCollider=function(){
     if(boi.pos.x+this.size-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
         boi.acc.x=0;
