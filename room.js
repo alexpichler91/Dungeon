@@ -15,12 +15,10 @@ function Room(difficulty = 0) {
     this.draw = function() {
         // draw room
         strokeWeight(4)
-        rect(width / 2, height / 2, this.size.x, this.size.y)
+        rect(0, 0, this.size.x, this.size.y)
         // draw doors
         strokeWeight(2)
-        push()
         fill("lightgrey")
-        translate(width / 2, height / 2)
         for (this.door of this.doors) {
             if(this.door.x != undefined) {
                 if(this.door.x != 0) {
@@ -30,7 +28,6 @@ function Room(difficulty = 0) {
                 }
             }
         }
-        pop()
     }
 }
 
