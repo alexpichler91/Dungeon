@@ -8,7 +8,8 @@ function setup() {
     translate(900, 800)
     boi = new Player()
     rooms[0][0] = new Room
-    generateAdjacent(0, 0)
+    Room.generateAdjacent(0, 0)
+    Room.getDoors(0, 0)
 }
 
 
