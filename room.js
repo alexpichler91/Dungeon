@@ -16,6 +16,7 @@ function Room(difficulty = 0) {
 
     this.draw = function() {
         // draw room
+        fill("white")
         strokeWeight(4)
         rect(width / 2, height / 2, this.size.x, this.size.y)
         // draw doors
