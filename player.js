@@ -1,23 +1,35 @@
 function Player() {
     this.pos=createVector(500,500)
+    this.acc=createVector(0,0)
+    this.maxspeed=10;
     this.big = 20;
 
 
     this.draw = function(){
 
-        push()
-        translate(this.pos.x,this.pos.y)
-        rotate(FieldOfView())
-        console.log(FieldOfView())
-        fill("red")
-        line(0,0,0,-20)
-        ellipse(0,0,this.big,this.big)
+        if(keyIsDown(87)){
+            this.acc.y-=0.5
+        }
+        if(keyIsDown(83)){
+            this.acc.y+=0.5
+        }
+        if(keyIsDown(68)){
+            this.acc.x+=0.5
+        }
+        if(keyIsDown(65)){
+            this.acc.x-=0.5
+        }
+        
+        this.acc.mult(0.95)
+        this.pos.add(this.acc)
 
-        pop()
+    push()
+    translate(this.pos.x,this.pos.y)
+    fill("red")
+    line(0,0,0,-20)
+    ellipse(0,0,this.big,this.big)
+
+    pop()
     }
 }
 
-function FieldOfView() {
-    this.dpos=createVector((mouseX - boi.pos.x)*-1,(mouseY - boi.pos.y)*-1)
-    return atan(this.dpos.y/this.dpos.x)*-1
-}
