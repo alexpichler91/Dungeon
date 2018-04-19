@@ -20,7 +20,7 @@ function Player() {
 
         this.acc.mult(0.95)
         this.pos.add(this.acc)
-        
+
         fill("red");
         push()
         translate(this.pos.x,this.pos.y)
@@ -33,6 +33,6 @@ function Player() {
 }
 
 function FieldOfView() {
-    this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1)
+    this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1) 
     return atan2(this.dpos.x,this.dpos.y)*-1
 }
