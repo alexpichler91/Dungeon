@@ -41,16 +41,12 @@ function Player() {
         this.acc.mult(0.95)
         this.pos.add(this.acc)
 
-    push()
-    translate(this.pos.x,this.pos.y)
-    fill("red")
-    line(0,0,0,-20)
-    ellipse(0,0,this.big,this.big)
-
-    pop()
-    }
-}
-
+        push()
+        translate(this.pos.x,this.pos.y)
+        fill("red")
+        line(0,0,0,-20)
+        ellipse(0,0,this.big,this.big)
+        pop()
         push()
         fill("red");
         translate(this.pos.x, this.pos.y)
@@ -58,7 +54,6 @@ function Player() {
         line(0,0,0,-20)
         ellipse(0,0,this.big,this.big)
         pop()
-
     }
 }
 
