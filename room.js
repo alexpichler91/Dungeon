@@ -21,7 +21,6 @@ function Room(difficulty = 0) {
         // draw doors
         strokeWeight(2)
         fill("lightgrey")
-        push()
         translate(width / 2, height / 2)
         for (idx of this.doors["x"]) {
             if(this.doors["x"][idx] != undefined) {
@@ -33,7 +32,6 @@ function Room(difficulty = 0) {
             }
         }
         fill("white")
-        pop()
     }
 }
 
