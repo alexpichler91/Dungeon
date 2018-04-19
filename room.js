@@ -21,18 +21,19 @@ function Room(difficulty = 0) {
         // draw doors
         strokeWeight(2)
         fill("lightgrey")
+        push()
         translate(width / 2, height / 2)
-        for (let i = 0; i < this.doors["x"].length; i++) {
-            if(this.doors["x"][i] != undefined) {
-                if(this.doors["x"][i] != 0) {
-                    rect(this.doors["x"][i] * ((this.size.x / 2) - (doorWidth / 2)), 0, doorWidth, doorHeight)
-                } else if(this.doors["y"][i] != 0) {
-                    rect(0, this.doors["y"][i] * ((this.size.y / 2) - (doorWidth / 2)), doorHeight, doorWidth)
+        for (idx of this.doors["x"]) {
+            if(this.doors["x"][idx] != undefined) {
+                if(this.doors["x"][idx] != 0) {
+                    rect(this.doors["x"][idx] * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
+                } else if(this.doors["y"][idx] != 0) {
+                    rect(0, this.doors["y"][idx] * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
                 }
             }
         }
         fill("white")
-        translate(0, 0)
+        pop()
     }
 }
 
@@ -49,6 +50,7 @@ Room.generateAdjacent = function(x, y) {
             }
         }
     }
+    Room.getDoors(this.pos.x, this.pos.y)
 }
 
 Room.getDoors = function(x, y) {
@@ -66,8 +68,7 @@ Room.getDoors = function(x, y) {
             }
         }
     }
-    if(rooms[this.pos.x][this.pos.y].doors["x"][0] == undefined) {
-        console.log("generating...");
+    if(rooms[this.pos.x][this.pos.y].doors["x"].length == 0) {
         Room.generateAdjacent(this.pos.x, this.pos.y)
     }
 }

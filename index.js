@@ -9,12 +9,12 @@ function setup() {
     boi = new Player()
     rooms[0][0] = new Room
     Room.generateAdjacent(0, 0)
-    Room.getDoors(0, 0)
+    console.log(rooms[0][0].doors["x"], rooms[0][0].doors["y"])
 }
 
 
 function draw() {
     background("lightgrey");
-    boi.draw();
     rooms[0][0].draw();
+    boi.draw();
 }
