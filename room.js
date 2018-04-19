@@ -13,7 +13,12 @@ function Room(difficulty = 0) {
     this.doors = []
 
     this.draw = function() {
+
+        push()
+
+        translate(width / 2, height / 2)
         // draw room
+        fill("white")
         strokeWeight(4)
         rect(0, 0, this.size.x, this.size.y)
         // draw doors
@@ -28,6 +33,8 @@ function Room(difficulty = 0) {
                 }
             }
         }
+
+        pop()
     }
 }
 
