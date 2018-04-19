@@ -1,5 +1,5 @@
 function Player() {
-    this.pos = createVector(0,0)    // Position des Spielers
+    this.pos = createVector(width / 2, height / 2)    // Position des Spielers
     this.big = 20;                      //Größe des Spielers
     this.acc = createVector(0,0)        //Beschleunigung ...
     this.accspeed=0.5;                     //Wie schnell er Beschleunigt        

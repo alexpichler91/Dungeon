@@ -12,10 +12,9 @@ function setup() {
 
 
 function draw() {
-
-    translate(width / 2, height / 2)
+    
     background("lightgrey");
     rooms[0][0].draw();
     boi.draw();
-    
+
 }
