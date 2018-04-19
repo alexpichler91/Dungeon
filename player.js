@@ -1,11 +1,6 @@
 function Player() {
-    this.pos=createVector(500,500)
-    this.acc=createVector(0,0)
-    this.maxspeed=10;
-    this.big = 20;
-
     this.pos = createVector(width / 2, height / 2)    // Position des Spielers
-    this.big = 20;                      //Größe des Spielers
+    this.size = 20;                      //Größe des Spielers
     this.acc = createVector(0,0)        //Beschleunigung ...
     this.accspeed=0.3;                  //Wie schnell er Beschleunigt
 
@@ -33,22 +28,22 @@ function Player() {
         fill("red");
         rotate(FieldOfView())
         line(0,0,0,-20)
-        ellipse(0,0,this.big,this.big)
+        ellipse(0,0,this.size,this.size)
         pop()
     }
     
     this.RoomCollider=function(){
-    if(boi.pos.x+boi.big-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
+    if(boi.pos.x+this.size-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
         boi.acc.x=0;
     }
-    if(boi.pos.x-boi.big-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x<0){
+    if(boi.pos.x-this.size-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x<0){
         boi.acc.x=0;
     }
 
-    if(boi.pos.y+boi.big-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y>0){
+    if(boi.pos.y+this.size-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y>0){
         boi.acc.y=0;
     }
-    if(boi.pos.y-boi.big-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y<0){
+    if(boi.pos.y-this.size-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y<0){
         boi.acc.y=0;
     }
     }
