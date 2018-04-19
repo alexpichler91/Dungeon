@@ -33,19 +33,19 @@ function Player() {
     }
 
     this.RoomCollider=function(){
-    if(boi.pos.x+this.size-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
-        boi.acc.x=0;
-    }
-    if(boi.pos.x-this.size-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x<0){
-        boi.acc.x=0;
-    }
+        if(boi.pos.x+this.size-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
+            boi.acc.x=0;
+        }
+        if(boi.pos.x-this.size-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x<0){
+            boi.acc.x=0;
+        }
 
-    if(boi.pos.y+this.size-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y>0){
-        boi.acc.y=0;
-    }
-    if(boi.pos.y-this.size-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y<0){
-        boi.acc.y=0;
-    }
+        if(boi.pos.y+this.size-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y>0){
+            boi.acc.y=0;
+        }
+        if(boi.pos.y-this.size-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y<0){
+            boi.acc.y=0;
+        }
     }
 }
 
