@@ -7,7 +7,7 @@ function Player() {
     this.pos = createVector(width / 2, height / 2)    // Position des Spielers
     this.big = 20;                      //Größe des Spielers
     this.acc = createVector(0,0)        //Beschleunigung ...
-    this.accspeed=0.5;                  //Wie schnell er Beschleunigt
+    this.accspeed=0.3;                  //Wie schnell er Beschleunigt
 
     this.draw = function(){
         if(keyIsDown(87)){
