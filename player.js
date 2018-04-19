@@ -18,19 +18,39 @@ function Player() {
             this.acc.x+=this.accspeed;
         }
 
+        this.RoomCollider();
         this.acc.mult(0.95)
         this.pos.add(this.acc)
         
+        
         push()
-        fill("red");
         translate(this.pos.x, this.pos.y)
+        fill("red");
         rotate(FieldOfView())
         line(0,0,0,-20)
         ellipse(0,0,this.big,this.big)
         pop()
         
     }
+    
+    this.RoomCollider=function(){
+    if(boi.pos.x+boi.big-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x>0){
+        boi.acc.x=0;
+    }
+    if(boi.pos.x-boi.big-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x<0){
+        boi.acc.x=0;
+    }
+
+    if(boi.pos.y+boi.big-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y>0){
+        boi.acc.y=0;
+    }
+    if(boi.pos.y-boi.big-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y<0){
+        boi.acc.y=0;
+    }
+    }
 }
+
+
 
 function FieldOfView() {
     this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1) 
