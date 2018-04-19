@@ -35,6 +35,7 @@ function Room(difficulty = 0) {
     }
 }
 
+
 Room.generateAdjacent = function(x, y) {
     this.pos = createVector(x, y)
     this.offset = createVector(-1, -1)
