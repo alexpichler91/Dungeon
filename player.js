@@ -1,8 +1,13 @@
 function Player() {
+    this.pos=createVector(500,500)
+    this.acc=createVector(0,0)
+    this.maxspeed=10;
+    this.big = 20;
+
     this.pos = createVector(width / 2, height / 2)    // Position des Spielers
     this.big = 20;                      //Größe des Spielers
     this.acc = createVector(0,0)        //Beschleunigung ...
-    this.accspeed=0.5;                     //Wie schnell er Beschleunigt        
+    this.accspeed=0.5;                  //Wie schnell er Beschleunigt
 
     this.draw = function(){
         if(keyIsDown(87)){
@@ -30,7 +35,6 @@ function Player() {
         line(0,0,0,-20)
         ellipse(0,0,this.big,this.big)
         pop()
-        
     }
     
     this.RoomCollider=function(){
@@ -53,6 +57,6 @@ function Player() {
 
 
 function FieldOfView() {
-    this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1) 
+    this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1)
     return atan2(this.dpos.x,this.dpos.y)*-1
 }
