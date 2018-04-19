@@ -11,6 +11,7 @@ Obstacle = function(pos, size) {
         push()
         translate(width / 2, height / 2)
         fill('black')
+        noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
         pop()
     }
@@ -23,6 +24,7 @@ Obstacle_Stone = function(pos, size) {
         push()
         translate(width / 2, height / 2)
         fill('darkgrey')
+        noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
         pop()
     }
