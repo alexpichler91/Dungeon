@@ -5,6 +5,9 @@ function Player() {
     this.accspeed=0.3;                  //Wie schnell er Beschleunigt
 
     this.draw = function(){
+
+        if(!dead){
+
         if(keyIsDown(87)){
             this.acc.y-=this.accspeed;
         }
@@ -22,12 +25,12 @@ function Player() {
         this.acc.mult(0.95)
         this.pos.add(this.acc)
 
-
+        }
         push()
         translate(this.pos.x, this.pos.y)
         fill("red");
         rotate(FieldOfView())
-        line(0,0,0,-20)
+        line(0,0,0,-12)
         ellipse(0,0,this.size,this.size)
         pop()
     }
@@ -40,10 +43,10 @@ function Player() {
         boi.acc.x=0;
     }
 
-    if(this.pos.y+this.size-(height / 2) > (rooms[0][0].size.y/2) && boi.acc.y > 0){
+    if(this.pos.y+this.size-(height / 2.5) > (rooms[0][0].size.y/2) && boi.acc.y > 0){
         boi.acc.y=0;
     }
-    if(this.pos.y-this.size-(height / 2)< (-rooms[0][0].size.y/2) && boi.acc.y < 0){
+    if(this.pos.y-this.size-(height / 2.5)< (-rooms[0][0].size.y/2) && boi.acc.y < 0){
         boi.acc.y=0;
     }
     }
