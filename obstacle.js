@@ -3,7 +3,7 @@ let maxObstacleX = 100
 let minObstacleY = 20
 let maxObstacleY = 100
 
-Obstacle = function(pos, size, isPermanent = true, hiddenItem = NULL) {
+Obstacle = function(pos, size, isPermanent = true, hiddenItem = undefined) {
     this.pos = pos
     this.size = size
     this.isPermanent = isPermanent

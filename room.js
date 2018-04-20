@@ -68,6 +68,7 @@ Room.getDoors = function(x, y) {
                 if(rooms[this.pos.x + this.offset.x] != undefined) {
                     if(rooms[this.pos.x + this.offset.x][this.pos.y + this.offset.y] != undefined) {
                         rooms[this.pos.x][this.pos.y].doors.push(createVector(this.pos.x + this.offset.x, this.pos.y + this.offset.y))
+
                     }
                 }
             }
