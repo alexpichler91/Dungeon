@@ -3,9 +3,13 @@ let maxObstacleX = 100
 let minObstacleY = 20
 let maxObstacleY = 100
 
-Obstacle = function(pos, size) {
+Obstacle = function(pos, size, isPermanent = true, hiddenItem = NULL) {
     this.pos = pos
     this.size = size
+    this.isPermanent = isPermanent
+    if(!this.isPermanent) {
+        this.hiddenItem = hiddenItem
+    }
 
     this.draw = function() {
         push()
