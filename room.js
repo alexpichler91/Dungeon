@@ -15,7 +15,7 @@ function Room(difficulty = 0) {
 
     this.draw = function() {
         push()
-        translate(width / 2, height / 2)
+        translate(width / 2, height / 2.5)
         // draw room
         fill("white")
         strokeWeight(4)

@@ -13,7 +13,7 @@ Obstacle = function(pos, size, isPermanent = true, hiddenItem = undefined) {
 
     this.draw = function() {
         push()
-        translate(width / 2, height / 2)
+        translate(width / 2, height / 2.5)
         fill('black')
         noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
@@ -26,7 +26,7 @@ Obstacle_Stone = function(pos, size) {
 
     this.draw = function() {
         push()
-        translate(width / 2, height / 2)
+        translate(width / 2, height / 2.5)
         fill('darkgrey')
         noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
