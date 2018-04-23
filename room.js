@@ -32,7 +32,7 @@ function Room(difficulty = 0) {
                 }
             }
         }
-        pop()
+        fill("white")
     }
     this.addObstacle = function(obstacle) {
         this.obstacles.push(obstacle)
