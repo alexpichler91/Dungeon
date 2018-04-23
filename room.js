@@ -1,5 +1,5 @@
 let rooms = [[]]
-let roomProbability = 0.1
+let roomProbability = 0.01
 let minRoomX = 200
 let maxRoomX = 800
 let minRoomY = 150
@@ -11,8 +11,6 @@ function Room(difficulty = 0) {
     this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
     this.difficulty = difficulty
     this.doors = []
-    this.doors["x"] = []
-    this.doors["y"] = []
 
     this.draw = function() {
         // draw room
@@ -23,12 +21,12 @@ function Room(difficulty = 0) {
         strokeWeight(2)
         fill("lightgrey")
         translate(width / 2, height / 2)
-        for (idx of this.doors["x"]) {
-            if(this.doors["x"][idx] != undefined) {
-                if(this.doors["x"][idx] != 0) {
-                    rect(this.doors["x"][idx] * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
-                } else if(this.doors["y"][idx] != 0) {
-                    rect(0, this.doors["y"][idx] * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
+        for (this.door of this.doors) {
+            if(this.door.x != undefined) {
+                if(this.door.x != 0) {
+                    rect(this.door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
+                } else if(this.door.y != 0) {
+                    rect(0, this.door.y * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
                 }
             }
         }
@@ -60,14 +58,13 @@ Room.getDoors = function(x, y) {
             if(this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
                 if(rooms[this.pos.x + this.offset.x] != undefined) {
                     if(rooms[this.pos.x + this.offset.x][this.pos.y + this.offset.y] != undefined) {
-                        rooms[this.pos.x][this.pos.y].doors["x"].push(this.pos.x + this.offset.x)
-                        rooms[this.pos.x][this.pos.y].doors["y"].push(this.pos.y + this.offset.y)
+                        rooms[this.pos.x][this.pos.y].doors.push(createVector(this.pos.x + this.offset.x, this.pos.y + this.offset.y))
                     }
                 }
             }
         }
     }
-    if(rooms[this.pos.x][this.pos.y].doors["x"].length == 0) {
+    if(rooms[this.pos.x][this.pos.y].doors.length == 0) {
         Room.generateAdjacent(this.pos.x, this.pos.y)
     }
 }
