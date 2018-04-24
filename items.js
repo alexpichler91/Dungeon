@@ -43,16 +43,20 @@ function Items(){
         this.length = this.items.length;
         this.collect();      
         for(let i=0;i<this.length;i++){
-            this.items[i].draw();
+            if(this.items[i]!=undefined){
+                this.items[i].draw();
+            }
         }
     }
 
     this.collect =function(){
         for(let i=0;i<this.length;i++){
-            if(mag(boi.pos.x-this.items[i].pos.x,boi.pos.y-this.items[i].pos.y)){
-                if(roomInArr(itemInv)<10){
-                    itemInv[roomInArr(itemInv)]=this.items[i];
-                    this.items[i]=undefined;
+            if(this.items[i]!=undefined){
+                if(mag(boi.pos.x-this.items[i].pos.x,boi.pos.y-this.items[i].pos.y)){
+                    if(roomInArr(itemInv)<10){
+                        itemInv[roomInArr(itemInv)]=this.items[i];
+                        this.items[i]=undefined;
+                    }
                 }
             }
         }
