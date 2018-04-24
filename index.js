@@ -21,18 +21,10 @@ function setup() {
     let obsPos = createVector(floor(random(-(rooms[0][0].size.x - obsSize.x) / 2, (rooms[0][0].size.x - obsSize.x) / 2)), floor(random(-(rooms[0][0].size.y - obsSize.y) / 2, (rooms[0][0].size.y - obsSize.y) / 2)))
     let obs = new Obstacle_Stone(obsPos, obsSize)
     rooms[0][0].addObstacle(obs)
-<<<<<<< HEAD
-    /*console.log("rectPos: " + rooms[0][0].obstacles[0].pos)
-    console.log("rectSize: " + rooms[0][0].obstacles[0].size)
-    console.log("circlePos: " + boi.pos)
-    console.log("circleSize: " + boi.size / 2)
-    console.log(collideRectCircle(rooms[0][0].obstacles[0].pos, rooms[0][0].obstacles[0].size, boi.pos, boi.size / 2))*/
-=======
-    
+
     /* einfügen wenn in neuer raum*/
     spawnItem.spawnItems();
     /* einfügen wenn in neuer raum*/
->>>>>>> db6b8d9beb0bfebb1d5ae53d479dfe72993e22bb
 }
 
 
