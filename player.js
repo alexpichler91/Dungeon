@@ -1,8 +1,8 @@
-function Player() {
+function Player() {webkitCancelAnimationFrame
     this.pos = createVector(width / 2, height /2.5)    // Position des Spielers
     this.size = 20;                      //Größe des Spielers
     this.acc = createVector(0,0)        //Beschleunigung ...
-    this.accspeed=0.3;                  //Wie schnell er Beschleunigt
+    this.accspeed=0.9;                  //Wie schnell er Beschleunigt
 
     this.draw = function(){
 
@@ -22,7 +22,7 @@ function Player() {
         }
 
         this.RoomCollider();
-        this.acc.mult(0.95)
+        this.acc.mult(0.88)
         this.pos.add(this.acc)
 
         }
