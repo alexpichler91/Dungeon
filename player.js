@@ -35,7 +35,6 @@ function Player() {webkitCancelAnimationFrame
     }
 
     this.RoomCollider = function() {
-        console.log(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos);
         if(collideRectCircle(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
             boi.acc.x=0;
         }
