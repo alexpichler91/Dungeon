@@ -6,7 +6,7 @@ function Sword(){
     this.pos = createVector(width/2,300)
     this.size = createVector(20,50)
     this.color = "black"
-    
+
     this.active = function(){
         console.log("Pew")
     }
@@ -18,11 +18,11 @@ function Sword(){
 }
 
 function SpawnItems(){
-    
+
     this.spawnItems = function(){
-        if( itemsInRoom[roomPos.x][roomPos.y] == undefined){    
+        if( itemsInRoom[roomPos.x][roomPos.y] == undefined){
             this.random= random(0,100)
-            itemsInRoom[roomPos.x][roomPos.y] = new Items(); 
+            itemsInRoom[roomPos.x][roomPos.y] = new Items();
             if(Swordchance>=this.random){
                 if(roomInArr(itemsInRoom[roomPos.x][roomPos.y].items)<100){
                     itemsInRoom[roomPos.x][roomPos.y].items[roomInArr(itemsInRoom[roomPos.x][roomPos.y].items)] = new Sword();
@@ -38,10 +38,10 @@ function Items(){
     this.itemcnt=0
     this.items = []
     this.length = 0
-   
+
     this.draw=function(){
         this.length = this.items.length;
-        this.collect();      
+        this.collect();
         for(let i=0;i<this.length;i++){
             if(this.items[i]!=undefined){
                 this.items[i].draw();
