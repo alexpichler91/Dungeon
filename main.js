@@ -21,6 +21,8 @@ function setup() {
     let obs = new Obstacle_Stone(obsPos, obsSize)
     rooms[roomPos.x][roomPos.y].addObstacle(obs)
 
+
+    SpawnItems();
 }
 
 
@@ -28,7 +30,8 @@ function draw() {
     background("lightgrey")
     rooms[roomPos.x][roomPos.y].draw()
     rooms[roomPos.x][roomPos.y].obstacles[0].draw()
-    itemsInRoom[roomPos.x][roomPos.y].draw()
     boi.draw()
     overlay.draw()
+
+    Items_Rooms[roomPos.x][roomPos.y].draw();
 }
