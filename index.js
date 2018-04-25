@@ -34,6 +34,5 @@ function draw() {
     rooms[0][0].obstacles[0].draw();
     itemsInRoom[roomPos.x][roomPos.y].draw()
     boi.draw();
-    //console.log(collideRectCircle(rooms[0][0].obstacles[0].pos, rooms[0][0].obstacles[0].size, boi.pos, boi.size / 2))
     overlay.draw()
 }

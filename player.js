@@ -1,11 +1,10 @@
 function Player() {webkitCancelAnimationFrame
-    this.pos = createVector(width / 2, height /2.5)    // Position des Spielers
+    this.pos = createVector(0, 0)        // Position des Spielers
     this.size = 20;                      //Größe des Spielers
-    this.acc = createVector(0,0)        //Beschleunigung ...
-    this.accspeed=0.9;                  //Wie schnell er Beschleunigt
+    this.acc = createVector(0, 0)        //Beschleunigung ...
+    this.accspeed=0.9;                   //Wie schnell er Beschleunigt
 
     this.draw = function(){
-
         if(!dead){
 
         if(keyIsDown(87)){
@@ -27,7 +26,7 @@ function Player() {webkitCancelAnimationFrame
 
         }
         push()
-        translate(this.pos.x, this.pos.y)
+        translate(this.pos.x + width / 2, this.pos.y + height / 2.5)
         fill("red");
         rotate(FieldOfView())
         line(0,0,0,-12)
@@ -35,20 +34,21 @@ function Player() {webkitCancelAnimationFrame
         pop()
     }
 
-    this.RoomCollider=function(){
-    if(this.pos.x+this.size-(width / 2) > rooms[0][0].size.x/2 && boi.acc.x > 0){
-        boi.acc.x=0;
-    }
-    if(this.pos.x-this.size-(width / 2) < (-rooms[0][0].size.x/2) && boi.acc.x < 0){
-        boi.acc.x=0;
-    }
+    this.RoomCollider = function() {
+        console.log(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos);
+        if(collideRectCircle(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
+            boi.acc.x=0;
+        }
+        if(collideRectCircle(createVector(-rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
+            boi.acc.x=0;
+        }
 
-    if(this.pos.y+this.size-(height / 2.5) > (rooms[0][0].size.y/2) && boi.acc.y > 0){
-        boi.acc.y=0;
-    }
-    if(this.pos.y-this.size-(height / 2.5)< (-rooms[0][0].size.y/2) && boi.acc.y < 0){
-        boi.acc.y=0;
-    }
+        if(collideRectCircle(createVector(0, rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
+            boi.acc.y=0;
+        }
+        if(collideRectCircle(createVector(0, -rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
+            boi.acc.y=0;
+        }
     }
 }
 

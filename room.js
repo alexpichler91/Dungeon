@@ -27,7 +27,7 @@ function Room(difficulty = 0) {
             if(this.door.x != undefined) {
                 if(this.door.x != 0) {
                     rect(this.door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
-                } else if(this.door.y != 0) {
+                } else if(this.door.y != 0) {5411
                     rect(0, this.door.y * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
                 }
             }
