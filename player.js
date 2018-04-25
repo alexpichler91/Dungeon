@@ -36,22 +36,26 @@ function Player() {webkitCancelAnimationFrame
 
     this.RoomCollider = function() {
         if(collideRectCircle(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
-            boi.acc.x=0;
+            this.pos.x = (rooms[0][0].size.x - this.size) / 2
+            this.acc.x = 0
         }
         if(collideRectCircle(createVector(-rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
-            boi.acc.x=0;
+            this.pos.x = -(rooms[0][0].size.x - this.size) / 2
+            this.acc.x = 0
         }
 
         if(collideRectCircle(createVector(0, rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
-            boi.acc.y=0;
+            this.pos.y = (rooms[0][0].size.y - this.size) / 2
+            this.acc.y = 0
         }
         if(collideRectCircle(createVector(0, -rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
-            boi.acc.y=0;
+            this.pos.y = -(rooms[0][0].size.y - this.size) / 2
+            this.acc.y = 0
         }
     }
 }
 
 function FieldOfView() {
-    this.dpos= createVector((mouseX-boi.pos.x)*-1 , (mouseY-boi.pos.y)*-1)
-    return atan2(this.dpos.x,this.dpos.y)*-1
+    this.dpos= createVector(-(mouseX-boi.pos.x-(width / 2)) , -(mouseY-boi.pos.y-(height / 2.5)))
+    return -atan2(this.dpos.x,this.dpos.y)
 }
