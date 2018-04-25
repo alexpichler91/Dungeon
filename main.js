@@ -20,7 +20,6 @@ function setup() {
     let obsPos = createVector(floor(random(-(rooms[roomPos.x][roomPos.y].size.x - obsSize.x) / 2, (rooms[roomPos.x][roomPos.y].size.x - obsSize.x) / 2)), floor(random(-(rooms[roomPos.x][roomPos.y].size.y - obsSize.y) / 2, (rooms[roomPos.x][roomPos.y].size.y - obsSize.y) / 2)))
     let obs = new Obstacle_Stone(obsPos, obsSize)
     rooms[roomPos.x][roomPos.y].addObstacle(obs)
-
 }
 
 
@@ -28,7 +27,7 @@ function draw() {
     background("lightgrey")
     rooms[roomPos.x][roomPos.y].draw()
     rooms[roomPos.x][roomPos.y].obstacles[0].draw()
-    itemsInRoom[roomPos.x][roomPos.y].draw()
+    //itemsInRoom[roomPos.x][roomPos.y].draw()
     boi.draw()
     overlay.draw()
 }

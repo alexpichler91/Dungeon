@@ -6,8 +6,11 @@ let minRoomY = 150
 let maxRoomY = 600
 let doorHeight = 50
 let doorWidth = 20
+let obstacleProbability = 0.5
+let obstacleTypes = 2
 
 function Room(difficulty = 0) {
+    var obstacle
     this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
     this.difficulty = difficulty
     this.doors = []
@@ -28,7 +31,7 @@ function Room(difficulty = 0) {
             if(this.door.x != undefined) {
                 if(this.door.x != 0) {
                     rect(this.door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
-                } else if(this.door.y != 0) {5411
+                } else if(this.door.y != 0) {
                     rect(0, this.door.y * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
                 }
             }
@@ -37,6 +40,19 @@ function Room(difficulty = 0) {
     }
     this.addObstacle = function(obstacle) {
         this.obstacles.push(obstacle)
+    }
+    this.fillObstacles = function() {
+        if(random(1) <= obstacleProbability) {
+            switch(floor(random(obstacleTypes))) {
+                case 0: {
+                    obstacle = new Obstacle_Stone()
+                    break;
+                }
+                default:
+                    console.log("oof")
+            }
+            this.obstacles.push(obstacle)
+        }
     }
 
 }
