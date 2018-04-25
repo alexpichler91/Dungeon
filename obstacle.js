@@ -7,7 +7,7 @@ Obstacle = function(pos, size, isPermanent = true, hiddenItem = undefined) {
     this.pos = pos
     this.size = size
     this.isPermanent = isPermanent
-    if(!this.isPermanent) {
+    if(!this.isPermanent && hiddenItem != undefined) {
         this.hiddenItem = hiddenItem
     }
 

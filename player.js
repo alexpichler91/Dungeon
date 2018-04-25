@@ -35,21 +35,21 @@ function Player() {webkitCancelAnimationFrame
     }
 
     this.RoomCollider = function() {
-        if(collideRectCircle(createVector(rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
-            this.pos.x = (rooms[0][0].size.x - this.size) / 2
+        if(collideRectCircle(createVector(rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
+            this.pos.x = (rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
             this.acc.x = 0
         }
-        if(collideRectCircle(createVector(-rooms[0][0].size.x / 2, 0), createVector(0, rooms[0][0].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
-            this.pos.x = -(rooms[0][0].size.x - this.size) / 2
+        if(collideRectCircle(createVector(-rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
+            this.pos.x = -(rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
             this.acc.x = 0
         }
 
-        if(collideRectCircle(createVector(0, rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
-            this.pos.y = (rooms[0][0].size.y - this.size) / 2
+        if(collideRectCircle(createVector(0, rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
+            this.pos.y = (rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
             this.acc.y = 0
         }
-        if(collideRectCircle(createVector(0, -rooms[0][0].size.y / 2), createVector(rooms[0][0].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
-            this.pos.y = -(rooms[0][0].size.y - this.size) / 2
+        if(collideRectCircle(createVector(0, -rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
+            this.pos.y = -(rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
             this.acc.y = 0
         }
     }

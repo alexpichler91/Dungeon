@@ -12,6 +12,7 @@ function Room(difficulty = 0) {
     this.difficulty = difficulty
     this.doors = []
     this.obstacles = []
+    this.items = []
 
     this.draw = function() {
         push()
