@@ -6,11 +6,13 @@ let minRoomY = 150
 let maxRoomY = 600
 let doorHeight = 50
 let doorWidth = 20
-let obstacleProbability = 0.5
-let obstacleTypes = 2
 
 function Room(difficulty = 0) {
-    var obstacle
+    let door
+    let obstacle
+    let obsPos
+    let obsSize
+    let obstructed
     this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
     this.difficulty = difficulty
     this.doors = []
@@ -27,14 +29,19 @@ function Room(difficulty = 0) {
         // draw doors
         strokeWeight(2)
         fill("lightgrey")
-        for (this.door of this.doors) {
-            if(this.door.x != undefined) {
-                if(this.door.x != 0) {
-                    rect(this.door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
-                } else if(this.door.y != 0) {
-                    rect(0, this.door.y * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
+        for(door of this.doors) {
+            if(door.x != undefined) {
+                if(door.x != 0) {
+                    rect(door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
+                } else if(door.y != 0) {
+                    rect(0, door.y * ((this.size.y - doorWidth) / 2), doorHeight, doorWidth)
                 }
             }
+        }
+        // draw obstacles
+        for(obs of this.obstacles) {
+            if(obs != undefined)
+                obs.draw()
         }
         pop()
     }
@@ -42,19 +49,65 @@ function Room(difficulty = 0) {
         this.obstacles.push(obstacle)
     }
     this.fillObstacles = function() {
-        if(random(1) <= obstacleProbability) {
-            switch(floor(random(obstacleTypes))) {
-                case 0: {
-                    obstacle = new Obstacle_Stone()
-                    break;
+        while(this.obstacles.indexOf(undefined) != -1) {
+            this.obstacles.splice(this.obstacles.indexOf(undefined), 1)
+        }
+        for (let i = 0; i < maxObstaclesPerRoom; i++) {
+            if(random(1) <= obstacleProbability || this.obstacles.length < minObstaclesPerRoom) {
+                do {
+                    obstructed = false
+                    obsSize = createVector(floor(random(minObstacleX, maxObstacleX)), floor(random(minObstacleY, maxObstacleY)))
+                    obsPos = createVector(floor(random(-(this.size.x - obsSize.x) / 2, (this.size.x - obsSize.x) / 2)), floor(random(-(this.size.y - obsSize.y) / 2, (this.size.y - obsSize.y) / 2)))
+                    if(collideRectCircle(obsPos, obsSize, boi.pos, boi.size / 2)) {
+                        obstructed = true
+                    }
+                    for(obs of this.obstacles) {
+                        if(obs != undefined) {
+                            if(collideRectRect(obsPos, obsSize, obs.pos, obs.size)) {
+                                obstructed = true
+                                break
+                            }
+                        }
+                    }
+                    for (door of this.doors) {
+                        if(door.x != undefined) {
+                            if(door.x != 0) {
+                                if(collideRectRect(obsPos, obsSize, createVector(door.x * ((this.size.x - doorWidth) / 2), 0), createVector(doorWidth, doorHeight))) {
+                                   obstructed = true
+                                   break
+                                }
+                            } else if(door.y != 0) {
+                                if(collideRectRect(obsPos, obsSize, createVector(0, door.y * ((this.size.y - doorWidth) / 2)), createVector(doorHeight, doorWidth))) {
+                                    obstructed = true
+                                    break
+                                }
+                            }
+                        }
+                    }
+                } while(obstructed)
+
+                switch(floor(random(obstacleTypes))) {
+                    case 0: {
+                        obstacle = new Obstacle_Stone(obsPos, obsSize)
+                        break
+                    }
+                    case 1: {
+                        obstacle = new Obstacle_Wood(obsPos, obsSize)
+                        break
+                    }
+                    case 2: {
+                        obstacle = new Obstacle_Dirt(obsPos, obsSize)
+                        break
+                    }
+                    default:
+                        break
                 }
-                default:
-                    console.log("oof")
+                if(obstacle != undefined) {
+                    this.obstacles.push(obstacle)
+                }
             }
-            this.obstacles.push(obstacle)
         }
     }
-
 }
 
 
