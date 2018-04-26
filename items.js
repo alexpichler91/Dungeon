@@ -36,7 +36,7 @@ function ItemsInRoom(){
             {
                 Inv.push(Items_Rooms[roomPos.x][roomPos.y].itemArr[i])
                 Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
-
+                Inventory.getNewItem()
             }
     }
 

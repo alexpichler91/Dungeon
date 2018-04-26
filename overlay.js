@@ -27,8 +27,11 @@ function Overlay(){
         for(let i=0 , offset=35;i < this.slots;i++){
             fill("green")
             rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,70,70)
-            
         }   
+    }
+
+    this.PlaceInHotbar = function(){
+        
     }
 
     this.drawhealthbar = function(){
