@@ -20,7 +20,7 @@ function Player() {webkitCancelAnimationFrame
             this.acc.x+=this.accspeed;
         }
 
-        this.RoomCollider();
+        this.roomCollider();
         this.acc.mult(0.88)
         this.pos.add(this.acc)
 
@@ -34,7 +34,7 @@ function Player() {webkitCancelAnimationFrame
         pop()
     }
 
-    this.RoomCollider = function() {
+    this.roomCollider = function() {
         if(collideRectCircle(createVector(rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
             this.pos.x = (rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
             this.acc.x = 0
@@ -52,6 +52,10 @@ function Player() {webkitCancelAnimationFrame
             this.pos.y = -(rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
             this.acc.y = 0
         }
+    }
+
+    this.obstacleCollider = function() {
+
     }
 }
 

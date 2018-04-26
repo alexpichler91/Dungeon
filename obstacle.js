@@ -1,6 +1,6 @@
 let obstacleProbability = 0.5
-let minObstaclesPerRoom = 2
-let maxObstaclesPerRoom = 15
+let minObstaclesPerRoom = 0
+let maxObstaclesPerRoom = 25
 let obstacleTypes = 3
 let minObstacleX = 20
 let maxObstacleX = 100
@@ -41,7 +41,7 @@ Obstacle_Wood = function(pos, size, hiddenItem) {
 
     this.draw = function() {
         push()
-        fill('orange')
+        fill(204, 102, 0)
         noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
         pop()
@@ -53,7 +53,7 @@ Obstacle_Dirt = function(pos, size, hiddenItem) {
 
     this.draw = function() {
         push()
-        fill('brown')
+        fill(102, 51, 0)
         noStroke()
         rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
         pop()
