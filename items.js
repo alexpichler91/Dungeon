@@ -1,6 +1,7 @@
 let Chance_Sword = 100;
 let Items_Rooms = [[]]
-let Inv=[]
+let Items_Inv=[]
+
 function Sword(){
     this.pos = createVector(-50,-100)
     this.size = createVector(5,25)
@@ -28,15 +29,24 @@ function ItemsInRoom(){
 
         if(this.random<=Chance_Sword){
             this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
+            this.itemArr.push(new Sword);
         }
     }
 
     this.collect = function(i){
-        if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && Inv.length<9)
+        if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && Items_Inv.length<9)
             {
-                Inv.push(Items_Rooms[roomPos.x][roomPos.y].itemArr[i])
+                Items_Inv.push(Items_Rooms[roomPos.x][roomPos.y].itemArr[i])
                 Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
-                Inventory.getNewItem()
+                overlay.NewItemInInv();
             }
     }
 

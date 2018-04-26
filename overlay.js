@@ -1,5 +1,6 @@
 let maxhealth=100
 let dead = false;
+
 function Overlay(){
     this.hotbarsize = createVector(1000,100)
     this.equiptslot=0
@@ -14,7 +15,6 @@ function Overlay(){
 
     this.drawhotbar = function(){
 
-
         if(keyCode<58 && keyCode > 48)
         this.equiptslot=keyCode-49;
         
@@ -27,16 +27,11 @@ function Overlay(){
         for(let i=0 , offset=35;i < this.slots;i++){
             fill("green")
             rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,70,70)
-        }   
-    }
-
-    this.PlaceInHotbar = function(){
-        
+        }
+        this.ItemDraw();   
     }
 
     this.drawhealthbar = function(){
-
-        //norm(this.health,width/2,width/2+this.healthbarsize.x)
         fill("red")
         rect(this.healthbarpos.x+(this.maxhealth-this.health)*2.5,this.healthbarpos.y,this.healthbarsize.x/this.maxhealth*this.health,this.healthbarsize.y)
     }
@@ -47,8 +42,29 @@ function Overlay(){
         if(this.health<=0)
         {   
             textSize(50)
-            text("YOU ARE DEAD",width/2.8,height/2)
+            text("YOU ARE DEAD",width/2.8,height/2);
             dead=true;
         }
-    }  
+    }
+    
+    this.NewItemInInv = function(){
+        let i=0;
+        for(let w=1;w!=0;i++){
+            w=0;
+            for(let j=0;j<Items_Inv.length;j++){
+                if(i==Items_Inv[j].InvPlace){
+                    w++;
+                }
+            }
+        }
+        Items_Inv[Items_Inv.length-1].InvPlace=i;
+    }
+
+    this.ItemDraw = function(){
+        for(let i=0; i<Items_Inv.length;i++){
+            fill("black")
+            //rect(100 + (37 + 35)*(i+1)+i*5*7,height-this.hotbarsize.y/2,5*2.5,25*2.5)
+            rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,Items_Inv[i].size.x*2.5,Items_Inv[i].size.y*2.5)
+        }
+    }
 }
