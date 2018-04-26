@@ -6,6 +6,7 @@ function Sword(){
     this.pos = createVector(-50,-100)
     this.size = createVector(5,25)
     this.InvPlace = 10
+    this.collectable=true
 
     this.draw = function(){
         push()
@@ -32,22 +33,21 @@ function ItemsInRoom(){
             this.itemArr.push(new Sword);
             this.itemArr.push(new Sword);
             this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
+
         }
     }
 
     this.collect = function(i){
-        if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && Items_Inv.length<9)
-            {
-                Items_Inv.push(Items_Rooms[roomPos.x][roomPos.y].itemArr[i])
-                Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
-                overlay.NewItemInInv();
-            }
+        if( Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable==true){
+            
+            if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9)
+                {
+                    Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
+                    Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
+                }
+        }else   {
+            setTimeout(function(){ Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable=true},1500);
+        }
     }
 
     this.draw = function(){
@@ -67,4 +67,16 @@ function SpawnItems(){
         Items_Rooms[roomPos.x][roomPos.y]= new ItemsInRoom();
         Items_Rooms[roomPos.x][roomPos.y].spawn();
     }
+}
+
+
+function findUndefined(arr){
+    let i=0
+    for(;i<9;i++){
+        if(arr[i]==undefined)
+        {
+            return i;
+        }
+    }
+    return i;
 }
