@@ -28,7 +28,8 @@ function Overlay(){
             fill("green")
             rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,70,70)
         }
-        this.ItemDraw();   
+        this.ItemDraw();
+        this.useItem();   
     }
 
     this.drawhealthbar = function(){
@@ -46,25 +47,31 @@ function Overlay(){
             dead=true;
         }
     }
-    
-    this.NewItemInInv = function(){
-        let i=0;
-        for(let w=1;w!=0;i++){
-            w=0;
-            for(let j=0;j<Items_Inv.length;j++){
-                if(i==Items_Inv[j].InvPlace){
-                    w++;
-                }
-            }
+
+    this.useItem = function	(){
+        if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
+            Items_Inv[this.equiptslot].active();
         }
-        Items_Inv[Items_Inv.length-1].InvPlace=i;
     }
 
     this.ItemDraw = function(){
-        for(let i=0; i<Items_Inv.length;i++){
+
+        if(keyIsDown(81)){
+            if(Items_Inv[this.equiptslot] != undefined){
+                Items_Inv[this.equiptslot].pos.y=boi.pos.y-25;
+                Items_Inv[this.equiptslot].pos.x=boi.pos.x
+                Items_Inv[this.equiptslot].collectable=false;
+                Items_Rooms[roomPos.x][roomPos.y].itemArr.push(Items_Inv[this.equiptslot]);
+                Items_Inv[this.equiptslot]=undefined;
+            }
+        }
+
+        for(let i=0; i<9;i++){
             fill("black")
-            //rect(100 + (37 + 35)*(i+1)+i*5*7,height-this.hotbarsize.y/2,5*2.5,25*2.5)
-            rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,Items_Inv[i].size.x*2.5,Items_Inv[i].size.y*2.5)
+            if(Items_Inv[i]!= undefined){
+                //rect(100 + (37 + 35)*(i+1)+i*5*7,height-this.hotbarsize.y/2,5*2.5,25*2.5)
+                rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,Items_Inv[i].size.x*2.5,Items_Inv[i].size.y*2.5)
+            }
         }
     }
 }
