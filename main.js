@@ -27,5 +27,5 @@ function draw() {
     boi.draw()
     overlay.draw()
 
-    //Items_Rooms[roomPos.x][roomPos.y].draw();
+    Items_Rooms[roomPos.x][roomPos.y].draw();
 }

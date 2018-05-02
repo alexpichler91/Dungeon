@@ -1,4 +1,4 @@
-let Chance_Sword = 0;
+let Chance_Sword = 50;
 let Items_Rooms = [[]]
 let Items_Inv=[]
 
