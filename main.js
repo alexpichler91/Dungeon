@@ -15,10 +15,7 @@ function setup() {
     rooms[roomPos.x][roomPos.y] = new Room()
     overlay = new Overlay()
 
-    Room.generateAdjacent(roomPos.x, roomPos.y)
-    let obsSize = createVector(floor(random(minObstacleX, maxObstacleX)), floor(random(minObstacleY, maxObstacleY)))
-    let obsPos = createVector(floor(random(-(rooms[roomPos.x][roomPos.y].size.x - obsSize.x) / 2, (rooms[roomPos.x][roomPos.y].size.x - obsSize.x) / 2)), floor(random(-(rooms[roomPos.x][roomPos.y].size.y - obsSize.y) / 2, (rooms[roomPos.x][roomPos.y].size.y - obsSize.y) / 2)))
-    let obs = new Obstacle_Stone(obsPos, obsSize)
+    rooms[roomPos.x][roomPos.y].generateAdjacent()
     rooms[roomPos.x][roomPos.y].fillObstacles()
     SpawnItems();
 }
@@ -30,5 +27,5 @@ function draw() {
     boi.draw()
     overlay.draw()
 
-    Items_Rooms[roomPos.x][roomPos.y].draw();
+    //Items_Rooms[roomPos.x][roomPos.y].draw();
 }

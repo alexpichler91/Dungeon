@@ -1,17 +1,17 @@
-let obstacleProbability = 0.5
+let obstacleProbability = 1
 let minObstaclesPerRoom = 0
-let maxObstaclesPerRoom = 25
+let maxObstaclesPerRoom = 15
 let obstacleTypes = 3
 let minObstacleX = 20
 let maxObstacleX = 100
 let minObstacleY = 20
 let maxObstacleY = 100
 
-Obstacle = function(pos, size, level = -1, hiddenItem = undefined) {
+Obstacle = function(pos, size, tier = -1, hiddenItem = undefined) {
     this.pos = pos
     this.size = size
-    this.level = level
-    if(this.level != -1 && hiddenItem != undefined) {
+    this.tier = tier
+    if(this.tier != -1 && hiddenItem != undefined) {
         this.hiddenItem = hiddenItem
     }
 

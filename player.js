@@ -1,8 +1,9 @@
 function Player() {webkitCancelAnimationFrame
+    let obs                              // private obstacle
     this.pos = createVector(0, 0)        // Position des Spielers
-    this.size = 20;                      //Größe des Spielers
-    this.acc = createVector(0, 0)        //Beschleunigung ...
-    this.accspeed=0.9;                   //Wie schnell er Beschleunigt
+    this.size = 20;                      // Größe des Spielers
+    this.acc = createVector(0, 0)        // Beschleunigung ...
+    this.accspeed=0.9;                   // Wie schnell er Beschleunigt
 
     this.draw = function(){
         if(!dead){
@@ -20,7 +21,8 @@ function Player() {webkitCancelAnimationFrame
             this.acc.x+=this.accspeed;
         }
 
-        this.roomCollider();
+        this.roomCollider()
+        this.doorCollider()
         this.acc.mult(0.88)
         this.pos.add(this.acc)
 
@@ -54,8 +56,37 @@ function Player() {webkitCancelAnimationFrame
         }
     }
 
-    this.obstacleCollider = function() {
+    /*this.obstacleCollider = function() {
+        for(obs of rooms[roomPos.x][roomPos.y].obstacles) {
+                if(collideRectCircle(obs.pos, obs.size, this.pos, this.size / 2 + 5) && boi.acc.x > 0){
 
+                }
+            }
+        }
+    }*/
+
+    this.doorCollider = function() {
+        for(door of rooms[roomPos.x][roomPos.y].doors) {
+            if(door.x != undefined) {
+                if(door.x != 0) {
+                    if(collideRectCircle(createVector(door.x * ((rooms[roomPos.x][roomPos.y].size.x - doorWidth) / 2), 0), createVector(doorWidth, doorHeight), this.pos, this.size / 2)) {
+                        roomPos.add(door)
+                        this.pos = createVector(-door.x * (rooms[roomPos.x][roomPos.y].size.x / 2 - doorWidth * 2), 0)
+                        rooms[roomPos.x][roomPos.y].generateAdjacent()
+                        rooms[roomPos.x][roomPos.y].fillObstacles()
+                        break
+                    }
+                } else if(door.y != 0) {
+                    if(collideRectCircle(createVector(0, door.y * ((rooms[roomPos.x][roomPos.y].size.y - doorWidth) / 2)), createVector(doorHeight, doorWidth), this.pos, this.size / 2)) {
+                        roomPos.add(door)
+                        this.pos = createVector(0, -door.y * (rooms[roomPos.x][roomPos.y].size.y / 2 - doorWidth * 2))
+                        rooms[roomPos.x][roomPos.y].generateAdjacent()
+                        rooms[roomPos.x][roomPos.y].fillObstacles()
+                        break
+                    }
+                }
+            }
+        }
     }
 }
 
