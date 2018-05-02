@@ -1,6 +1,6 @@
 let obstacleProbability = 1
 let minObstaclesPerRoom = 0
-let maxObstaclesPerRoom = 15
+let maxObstaclesPerRoom = 100
 let obstacleTypes = 3
 let minObstacleX = 20
 let maxObstacleX = 100
