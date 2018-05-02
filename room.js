@@ -6,6 +6,7 @@ let minRoomY = 150
 let maxRoomY = 600
 let doorHeight = 50
 let doorWidth = 20
+let doorFreeSpace = 50
 let cellHeight = 100
 let cellWidth = 100
 
@@ -18,6 +19,7 @@ function Room(difficulty = 0) {
     this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
     this.difficulty = difficulty
     this.obstaclesFilled = false
+    this.adjacentRoomsGenerated = false
     this.doors = []
     this.obstacles = []
     this.items = []
@@ -77,12 +79,12 @@ function Room(difficulty = 0) {
                         for (door of this.doors) {
                             if(door.x != undefined) {
                                 if(door.x != 0) {
-                                    if(collideRectRect(obsPos, obsSize, createVector(door.x * ((this.size.x - doorWidth) / 2), 0), createVector(doorWidth, doorHeight))) {
+                                    if(collideRectRect(obsPos, obsSize, createVector(door.x * ((this.size.x - doorWidth) / 2), 0), createVector(doorWidth + doorFreeSpace, doorHeight + doorFreeSpace * 2))) {
                                        obstructed = true
                                        break
                                     }
                                 } else if(door.y != 0) {
-                                    if(collideRectRect(obsPos, obsSize, createVector(0, door.y * ((this.size.y - doorWidth) / 2)), createVector(doorHeight, doorWidth))) {
+                                    if(collideRectRect(obsPos, obsSize, createVector(0, door.y * ((this.size.y - doorWidth) / 2)), createVector(doorHeight + doorFreeSpace * 2, doorWidth + doorFreeSpace))) {
                                         obstructed = true
                                         break
                                     }
@@ -116,41 +118,41 @@ function Room(difficulty = 0) {
         }
     }
     this.generateAdjacent = function() {
+        if(!this.adjacentRoomsGenerated) {
+            this.offset = createVector(-1, -1)
+
+            for(; this.offset.x <= 1; this.offset.x++) {
+                for(this.offset.y = -1; this.offset.y <= 1; this.offset.y++) {
+                    if(random(1) <= roomProbability && this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
+                        if(rooms[roomPos.x + this.offset.x] == undefined) {
+                            rooms[roomPos.x + this.offset.x] = []
+                        }
+                        if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] == undefined) {
+                            rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
+                        }
+                    }
+                }
+            }
+            this.getDoors()
+            this.adjacentRoomsGenerated = true
+        }
+    }
+    this.getDoors = function() {
         this.offset = createVector(-1, -1)
 
-        for(; this.offset.x <= 1; this.offset.x++) {
+        for(this.offset.x = -1; this.offset.x <= 1; this.offset.x++) {
             for(this.offset.y = -1; this.offset.y <= 1; this.offset.y++) {
-                if(random(1) <= roomProbability && this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
-                    if(rooms[roomPos.x + this.offset.x] == undefined) {
-                        rooms[roomPos.x + this.offset.x] = []
-                    }
-                    if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] == undefined) {
-                        rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
-                    }
-                }
-            }
-        }
-        Room.getDoors(roomPos.x, roomPos.y)
-    }
-}
-
-
-Room.getDoors = function(x, y) {
-    this.pos = createVector(x, y)
-    this.offset = createVector(-1, -1)
-
-    for(this.offset.x = -1; this.offset.x <= 1; this.offset.x++) {
-        for(this.offset.y = -1; this.offset.y <= 1; this.offset.y++) {
-            if(this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
-                if(rooms[this.pos.x + this.offset.x] != undefined) {
-                    if(rooms[this.pos.x + this.offset.x][this.pos.y + this.offset.y] != undefined) {
-                        rooms[this.pos.x][this.pos.y].doors.push(createVector(this.offset.x, this.offset.y))
+                if(this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
+                    if(rooms[roomPos.x + this.offset.x] != undefined) {
+                        if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] != undefined) {
+                            rooms[roomPos.x][roomPos.y].doors.push(createVector(this.offset.x, this.offset.y))
+                        }
                     }
                 }
             }
         }
-    }
-    if(rooms[this.pos.x][this.pos.y].doors.length == 0) {
-        rooms[this.pos.x][this.pos.y].generateAdjacent()
+        if(rooms[roomPos.x][roomPos.y].doors.length == 0) {
+            this.generateAdjacent()
+        }
     }
 }
