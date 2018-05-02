@@ -7,6 +7,8 @@ function Sword(){
     this.size = createVector(5,25)
     this.InvPlace = 10
     this.collectable=true
+    this.cooldown = 5
+    this.buffer =0
 
     this.draw = function(){
         push()
@@ -17,7 +19,14 @@ function Sword(){
     }
 
     this.active = function(){
-
+        console.log(this.buffer)
+        if(this.buffer <= 0){
+        clearInterval();
+        console.log("suicide")
+        this.buffer = this.cooldown;
+        } else {
+            setInterval(function(){this.buffer--},1000)
+        }
     }
 }
 
@@ -30,10 +39,6 @@ function ItemsInRoom(){
 
         if(this.random<=Chance_Sword){
             this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-            this.itemArr.push(new Sword);
-
         }
     }
 

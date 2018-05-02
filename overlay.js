@@ -28,7 +28,8 @@ function Overlay(){
             fill("green")
             rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,70,70)
         }
-        this.ItemDraw();   
+        this.ItemDraw();
+        this.useItem();   
     }
 
     this.drawhealthbar = function(){
@@ -44,6 +45,12 @@ function Overlay(){
             textSize(50)
             text("YOU ARE DEAD",width/2.8,height/2);
             dead=true;
+        }
+    }
+
+    this.useItem = function	(){
+        if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
+            Items_Inv[this.equiptslot].active();
         }
     }
 

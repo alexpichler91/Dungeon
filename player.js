@@ -6,7 +6,6 @@ function Player() {webkitCancelAnimationFrame
 
     this.draw = function(){
         if(!dead){
-
         if(keyIsDown(87)){
             this.acc.y-=this.accspeed;
         }
