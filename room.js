@@ -1,5 +1,5 @@
 let rooms = [[]]
-let roomProbability = 0.33
+let roomProbability = 0.75
 let minRoomX = 200
 let maxRoomX = 800
 let minRoomY = 150
@@ -123,12 +123,17 @@ function Room(difficulty = 0) {
 
             for(; this.offset.x <= 1; this.offset.x++) {
                 for(this.offset.y = -1; this.offset.y <= 1; this.offset.y++) {
-                    if(random(1) <= roomProbability && this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
-                        if(rooms[roomPos.x + this.offset.x] == undefined) {
+                    if(this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
+                        if(rooms[roomPos.x + this.offset.x] === undefined) {
                             rooms[roomPos.x + this.offset.x] = []
                         }
-                        if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] == undefined) {
-                            rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
+                        if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] === undefined) {
+                            if(random(1) <= roomProbability) {
+                                rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
+                            }
+                            else {
+                                rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = null
+                            }
                         }
                     }
                 }
@@ -139,13 +144,13 @@ function Room(difficulty = 0) {
     }
     this.getDoors = function() {
         this.offset = createVector(-1, -1)
-
+        this.doors = []
         for(this.offset.x = -1; this.offset.x <= 1; this.offset.x++) {
             for(this.offset.y = -1; this.offset.y <= 1; this.offset.y++) {
                 if(this.offset.x != this.offset.y && this.offset.x != -this.offset.y) {
                     if(rooms[roomPos.x + this.offset.x] != undefined) {
                         if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] != undefined) {
-                            rooms[roomPos.x][roomPos.y].doors.push(createVector(this.offset.x, this.offset.y))
+                            this.doors.push(createVector(this.offset.x, this.offset.y))
                         }
                     }
                 }

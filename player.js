@@ -21,6 +21,7 @@ function Player() {webkitCancelAnimationFrame
         }
 
         this.roomCollider()
+        this.obstacleCollider()
         this.doorCollider()
         this.acc.mult(0.88)
         this.pos.add(this.acc)
@@ -55,14 +56,13 @@ function Player() {webkitCancelAnimationFrame
         }
     }
 
-    /*this.obstacleCollider = function() {
+    this.obstacleCollider = function() {
         for(obs of rooms[roomPos.x][roomPos.y].obstacles) {
-                if(collideRectCircle(obs.pos, obs.size, this.pos, this.size / 2 + 5) && boi.acc.x > 0){
-
-                }
+            if(this.acc.x > 0 && collideRectCircle(createVector(obs.pos.x - (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
+                this.acc.x = 0
             }
         }
-    }*/
+    }
 
     this.doorCollider = function() {
         for(door of rooms[roomPos.x][roomPos.y].doors) {
