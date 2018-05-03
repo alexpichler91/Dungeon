@@ -2,29 +2,29 @@ function Player() {
     let obs                              // private obstacle
     this.pos = createVector(0, 0)        // Position des Spielers
     this.size = 20;                      // Größe des Spielers
-    this.acc = createVector(0, 0)        // Beschleunigung ...
-    this.accspeed=0.9;                   // Wie schnell er Beschleunigt
+    this.vel = createVector(0, 0)        // Beschleunigung ...
+    this.acc = 0.9;                      // Wie schnell er Beschleunigt
 
     this.draw = function(){
         if(!dead){
         if(keyIsDown(87)){
-            this.acc.y-=this.accspeed;
+            this.vel.y-=this.acc;
         }
         if(keyIsDown(83)){
-            this.acc.y+=this.accspeed;
+            this.vel.y+=this.acc;
         }
         if(keyIsDown(65)){
-            this.acc.x-=this.accspeed;
+            this.vel.x-=this.acc;
         }
         if(keyIsDown(68)){
-            this.acc.x+=this.accspeed;
+            this.vel.x+=this.acc;
         }
 
         this.roomCollider()
         this.obstacleCollider()
         this.doorCollider()
-        this.acc.mult(0.88)
-        this.pos.add(this.acc)
+        this.vel.mult(0.88)
+        this.pos.add(this.vel)
 
         }
         push()
@@ -39,27 +39,27 @@ function Player() {
     this.roomCollider = function() {
         if(collideRectCircle(createVector(rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
             this.pos.x = (rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
-            this.acc.x = 0
+            this.vel.x = 0
         }
         if(collideRectCircle(createVector(-rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
             this.pos.x = -(rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
-            this.acc.x = 0
+            this.vel.x = 0
         }
 
         if(collideRectCircle(createVector(0, rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
             this.pos.y = (rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
-            this.acc.y = 0
+            this.vel.y = 0
         }
         if(collideRectCircle(createVector(0, -rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
             this.pos.y = -(rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
-            this.acc.y = 0
+            this.vel.y = 0
         }
     }
 
     this.obstacleCollider = function() {
         for(obs of rooms[roomPos.x][roomPos.y].obstacles) {
-            if(this.acc.x > 0 && collideRectCircle(createVector(obs.pos.x - (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
-                this.acc.x = 0
+            if(this.vel.x > 0 && collideRectCircle(createVector(obs.pos.x - (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
+                this.vel.x = 0
             }
         }
     }
