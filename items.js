@@ -19,14 +19,7 @@ function Sword(){
     }
 
     this.active = function(){
-        console.log(this.buffer)
-        if(this.buffer <= 0){
-        clearInterval();
         console.log("suicide")
-        this.buffer = this.cooldown;
-        } else {
-            setInterval(function(){this.buffer--},1000)
-        }
     }
 }
 
