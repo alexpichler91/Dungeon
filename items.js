@@ -7,7 +7,7 @@ function Sword(){
     this.size = createVector(5,25)
     this.InvPlace = 10
     this.collectable=true
-    this.cooldown = 5
+    this.cooldown = 1
     this.buffer =0
 
     this.draw = function(){
@@ -19,9 +19,11 @@ function Sword(){
     }
 
     this.active = function(){
-        console.log("suicide")
+        console.log("swish")
     }
 }
+
+
 
 
 function ItemsInRoom(){

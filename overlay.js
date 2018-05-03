@@ -9,7 +9,9 @@ function Overlay(){
     this.hotbarpos = createVector(width/2,height-this.hotbarsize.y/2);
     this.healthbarsize = createVector(500,30)
     this.healthbarpos = createVector(width/2+this.healthbarsize.x/2,height-this.hotbarsize.y-this.healthbarsize.y/2)
+    
     this.cooldown=0;
+    this.buffer = 0;
 
     this.maxhealth=maxhealth
     this.health=this.maxhealth
@@ -50,18 +52,17 @@ function Overlay(){
     }
 
     this.useItem = function	(){
-        console.log(this.cooldown)
-        if(overlay.cooldown<=0){
-            clearInterval(timer)
-            console.log("cleardInterval")
+        if(this.cooldown<=0){
+            timer=0
             
             if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
                 Items_Inv[this.equiptslot].active();
-                this.cooldown = Items_Inv[this.equiptslot].cooldown;
+                this.cooldown = Items_Inv[this.equiptslot].cooldown * 60;
+                this.buffer = this.cooldown;
+                timer= frameCount
             }
         }else {
-           var timer = setInterval(function(){overlay.cooldown-=1},1000)
-            console.log("setedIntervall")
+            this.cooldown = timer - frameCount + this.buffer
         }
         
     }
