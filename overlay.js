@@ -56,7 +56,7 @@ function Overlay(){
             timer=0
             
             if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
-                Items_Inv[this.equiptslot].active();
+                Items_Inv[this.equiptslot].active=true;
                 this.cooldown = Items_Inv[this.equiptslot].cooldown * 60;
                 this.buffer = this.cooldown;
                 timer= frameCount
