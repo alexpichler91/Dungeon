@@ -76,10 +76,10 @@ function Player() {
             if(this.vel.x < 0 && collideRectCircle(createVector(obs.pos.x + (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
                 this.vel.x = 0
             }
-            if(this.vel.y > 0 && collideRectCircle(createVector(obs.pos.y - (obs.size.y / 2), obs.pos.x), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
+            if(this.vel.y > 0 && collideRectCircle(createVector(obs.pos.x, obs.pos.y - (obs.size.y / 2)), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
                 this.vel.y = 0
             }
-            if(this.vel.y < 0 && collideRectCircle(createVector(obs.pos.y + (obs.size.y / 2), obs.pos.x), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
+            if(this.vel.y < 0 && collideRectCircle(createVector(obs.pos.x, obs.pos.y + (obs.size.y / 2)), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
                 this.vel.y = 0
             }
         }
