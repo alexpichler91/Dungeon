@@ -73,6 +73,7 @@ function Player() {webkitCancelAnimationFrame
                         this.pos = createVector(-door.x * (rooms[roomPos.x][roomPos.y].size.x / 2 - doorWidth * 2), 0)
                         rooms[roomPos.x][roomPos.y].generateAdjacent()
                         rooms[roomPos.x][roomPos.y].fillObstacles()
+                        SpawnItems();
                         break
                     }
                 } else if(door.y != 0) {
@@ -81,6 +82,7 @@ function Player() {webkitCancelAnimationFrame
                         this.pos = createVector(0, -door.y * (rooms[roomPos.x][roomPos.y].size.y / 2 - doorWidth * 2))
                         rooms[roomPos.x][roomPos.y].generateAdjacent()
                         rooms[roomPos.x][roomPos.y].fillObstacles()
+                        SpawnItems();
                         break
                     }
                 }

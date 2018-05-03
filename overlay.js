@@ -1,5 +1,6 @@
 let maxhealth=100
 let dead = false;
+let timer
 
 function Overlay(){
     this.hotbarsize = createVector(1000,100)
@@ -9,7 +10,8 @@ function Overlay(){
     this.hotbarpos = createVector(width/2,height-this.hotbarsize.y/2);
     this.healthbarsize = createVector(500,30)
     this.healthbarpos = createVector(width/2+this.healthbarsize.x/2,height-this.hotbarsize.y-this.healthbarsize.y/2)
-    
+    this.cooldown=0;
+
     this.maxhealth=maxhealth
     this.health=this.maxhealth
 
@@ -49,9 +51,20 @@ function Overlay(){
     }
 
     this.useItem = function	(){
-        if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
-            Items_Inv[this.equiptslot].active();
+        console.log(this.cooldown)
+        if(overlay.cooldown<=0){
+            clearInterval(timer)
+            console.log("cleardInterval")
+            
+            if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
+                Items_Inv[this.equiptslot].active();
+                this.cooldown = Items_Inv[this.equiptslot].cooldown;
+            }
+        }else {
+            timer = setInterval(function(){overlay.cooldown-=1},1000)
+            console.log("setedIntervall")
         }
+        
     }
 
     this.ItemDraw = function(){

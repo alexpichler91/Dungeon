@@ -1,4 +1,4 @@
-let Chance_Sword = 0;
+let Chance_Sword = 50;
 let Items_Rooms = [[]]
 let Items_Inv=[]
 
@@ -19,14 +19,7 @@ function Sword(){
     }
 
     this.active = function(){
-        console.log(this.buffer)
-        if(this.buffer <= 0){
-        clearInterval();
         console.log("suicide")
-        this.buffer = this.cooldown;
-        } else {
-            setInterval(function(){this.buffer--},1000)
-        }
     }
 }
 
