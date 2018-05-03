@@ -36,20 +36,20 @@ function Player() {
     }
 
     this.roomCollider = function() {
-        if(collideRectCircle(createVector(rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x > 0){
+        if(collideRectCircle(createVector(rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.vel.x > 0){
             this.pos.x = (rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
             this.vel.x = 0
         }
-        if(collideRectCircle(createVector(-rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.acc.x < 0){
+        if(collideRectCircle(createVector(-rooms[roomPos.x][roomPos.y].size.x / 2, 0), createVector(0, rooms[roomPos.x][roomPos.y].size.y), this.pos, this.size / 2 + 5) && boi.vel.x < 0){
             this.pos.x = -(rooms[roomPos.x][roomPos.y].size.x - this.size) / 2
             this.vel.x = 0
         }
 
-        if(collideRectCircle(createVector(0, rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y > 0){
+        if(collideRectCircle(createVector(0, rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.vel.y > 0){
             this.pos.y = (rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
             this.vel.y = 0
         }
-        if(collideRectCircle(createVector(0, -rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.acc.y < 0){
+        if(collideRectCircle(createVector(0, -rooms[roomPos.x][roomPos.y].size.y / 2), createVector(rooms[roomPos.x][roomPos.y].size.x, 0), this.pos, this.size / 2 + 5) && boi.vel.y < 0){
             this.pos.y = -(rooms[roomPos.x][roomPos.y].size.y - this.size) / 2
             this.vel.y = 0
         }
