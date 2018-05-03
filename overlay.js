@@ -1,6 +1,5 @@
 let maxhealth=100
 let dead = false;
-let timer
 
 function Overlay(){
     this.hotbarsize = createVector(1000,100)
@@ -61,7 +60,7 @@ function Overlay(){
                 this.cooldown = Items_Inv[this.equiptslot].cooldown;
             }
         }else {
-            timer = setInterval(function(){overlay.cooldown-=1},1000)
+           var timer = setInterval(function(){overlay.cooldown-=1},1000)
             console.log("setedIntervall")
         }
         

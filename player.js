@@ -1,4 +1,4 @@
-function Player() {webkitCancelAnimationFrame
+function Player() {
     let obs                              // private obstacle
     this.pos = createVector(0, 0)        // Position des Spielers
     this.size = 20;                      // Größe des Spielers
