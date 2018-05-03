@@ -7,25 +7,24 @@ function Player() {
 
     this.draw = function(){
         if(!dead){
-        if(keyIsDown(87)){
-            this.vel.y-=this.acc;
-        }
-        if(keyIsDown(83)){
-            this.vel.y+=this.acc;
-        }
-        if(keyIsDown(65)){
-            this.vel.x-=this.acc;
-        }
-        if(keyIsDown(68)){
-            this.vel.x+=this.acc;
-        }
+            if(keyIsDown(87)){
+                this.vel.y-=this.acc;
+            }
+            if(keyIsDown(83)){
+                this.vel.y+=this.acc;
+            }
+            if(keyIsDown(65)){
+                this.vel.x-=this.acc;
+            }
+            if(keyIsDown(68)){
+                this.vel.x+=this.acc;
+            }
 
-        this.roomCollider()
-        this.obstacleCollider()
-        this.doorCollider()
-        this.vel.mult(0.88)
-        this.pos.add(this.vel)
-
+            this.roomCollider()
+            this.obstacleCollider()
+            this.doorCollider()
+            this.vel.mult(0.88)
+            this.pos.add(this.vel)
         }
         push()
         translate(this.pos.x + width / 2, this.pos.y + height / 2.5)
