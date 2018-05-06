@@ -26,6 +26,11 @@ function draw() {
     rooms[roomPos.x][roomPos.y].draw()
     boi.draw()
     overlay.draw()
-
+    push()
+    translate(width / 2, height / 2.5)
+    noFill()
+    strokeWeight(1)
+    rooms[roomPos.x][roomPos.y].obstacles.draw()
+    pop()
     Items_Rooms[roomPos.x][roomPos.y].draw();
 }

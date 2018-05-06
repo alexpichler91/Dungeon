@@ -21,8 +21,9 @@ function Room(difficulty = 0) {
     this.obstaclesFilled = false
     this.adjacentRoomsGenerated = false
     this.doors = []
-    this.obstacles = []
     this.items = []
+    this.obstacles = new Quadtree(createVector(0, 0), this.size)
+    this.obstacleCount
 
     this.draw = function() {
         push()
@@ -44,23 +45,21 @@ function Room(difficulty = 0) {
             }
         }
         // draw obstacles
-        for(obs of this.obstacles) {
+        for(obs of this.obstacles.getObjects()) {
             if(obs != undefined)
                 obs.draw()
         }
         pop()
     }
     this.addObstacle = function(obstacle) {
-        this.obstacles.push(obstacle)
+        this.obstacles.add(obstacle)
+        this.obstacleCount = this.obstacles.getObjects().length
     }
     this.fillObstacles = function() {
         if(!this.obstaclesFilled) {
             let roomSizeModifier = (this.size.x / maxRoomX) * (this.size.y / maxRoomY)
-            while(this.obstacles.indexOf(undefined) != -1) {
-                this.obstacles.splice(this.obstacles.indexOf(undefined), 1)
-            }
             for (let i = 0; i < maxObstaclesPerRoom; i++) {
-                if(random(1) <= obstacleProbability * roomSizeModifier || this.obstacles.length < minObstaclesPerRoom) {
+                if(random(1) <= obstacleProbability * roomSizeModifier || this.obstacleCount < minObstaclesPerRoom) {
                     do {
                         obstructed = false
                         obsSize = createVector(floor(random(minObstacleX, maxObstacleX)), floor(random(minObstacleY, maxObstacleY)))
@@ -68,7 +67,7 @@ function Room(difficulty = 0) {
                         if(collideRectCircle(obsPos, obsSize, boi.pos, boi.size / 2)) {
                             obstructed = true
                         }
-                        for(obs of this.obstacles) {
+                        for(obs of this.obstacles.getObjects()) {
                             if(obs != undefined) {
                                 if(collideRectRect(obsPos, obsSize, obs.pos, obs.size)) {
                                     obstructed = true
@@ -110,7 +109,8 @@ function Room(difficulty = 0) {
                             break
                     }
                     if(obstacle != undefined) {
-                        this.obstacles.push(obstacle)
+                        this.obstacles.add(obstacle)
+                        this.obstacleCount = this.obstacles.getObjects().length
                     }
                 }
             }
