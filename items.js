@@ -8,7 +8,9 @@ function Sword(){
     this.InvPlace = 10
     this.collectable=true
     this.cooldown = 1
-    this.buffer =0
+    this.active =false
+    this.anglebuffer = 0 ;
+
 
     this.draw = function(){
         push()
@@ -16,13 +18,18 @@ function Sword(){
         translate(width/2,height/2.5)
         rect(this.pos.x,this.pos.y,this.size.x,this.size.y)
         pop()
+        this.animation()
     }
 
-    this.active = function(){
-        console.log("swish")
+    this.animation = function(){
+        if(this.active){
+            push()
+            translate(boi.pos.x,boi.pos.y)
+            this.anglebuffer = 
+            pop()
+        }
     }
 }
-
 
 
 
@@ -40,8 +47,7 @@ function ItemsInRoom(){
     this.collect = function(i){
         if( Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable==true){
             
-            if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9)
-                {
+            if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9){
                     Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
                     Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
                 }
