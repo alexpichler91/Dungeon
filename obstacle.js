@@ -1,6 +1,6 @@
 let obstacleProbability = 1
 let minObstaclesPerRoom = 0
-let maxObstaclesPerRoom = 15
+let maxObstaclesPerRoom = 25
 let obstacleTypes = 3
 let minObstacleX = 20
 let maxObstacleX = 100
@@ -50,7 +50,7 @@ Obstacle_Wood = function(pos, size, hiddenItem) {
 
 Obstacle_Dirt = function(pos, size, hiddenItem) {
     Obstacle.call(this, pos, size, 0, hiddenItem)
-
+    
     this.draw = function() {
         push()
         fill(102, 51, 0)

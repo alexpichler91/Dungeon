@@ -23,10 +23,7 @@ function Sword(){
 
     this.animation = function(){
         if(this.active){
-            push()
-            translate(boi.pos.x,boi.pos.y)
-            this.anglebuffer = 
-            pop()
+           melee()
         }
     }
 }
