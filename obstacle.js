@@ -11,6 +11,7 @@ Obstacle = function(pos, size, tier = -1, hiddenItem = undefined) {
     this.pos = pos
     this.size = size
     this.tier = tier
+    this.type = type.OBSTACLE
     if(this.tier != -1 && hiddenItem != undefined) {
         this.hiddenItem = hiddenItem
     }

@@ -95,10 +95,10 @@ class Quadtree {
         this.nodes[1] = new Quadtree(createVector(this.pos.x + (subSize.x / 2), this.pos.y - (subSize.y / 2)), subSize, this.maxObjects, this.maxLevel, nextLevel)
 
         // bottom left
-        this.nodes[2] = new Quadtree(createVector(this.pos.x - (subSize.x / 2), this.pos.y + (subSize.y / 2)), subSize, this.maxObjects, this.maxLevel, nextLevel)
+        this.nodes[2] = new Quadtree(p5.Vector.add(this.pos, p5.Vector.div(subSize, 2)), subSize, this.maxObjects, this.maxLevel, nextLevel)
 
         // bottom right
-        this.nodes[3] = new Quadtree(p5.Vector.add(this.pos, p5.Vector.div(subSize, 2)), subSize, this.maxObjects, this.maxLevel, nextLevel)
+        this.nodes[3] = new Quadtree(createVector(this.pos.x - (subSize.x / 2), this.pos.y + (subSize.y / 2)), subSize, this.maxObjects, this.maxLevel, nextLevel)
     }
 
     // returns all objects in the node and its subnodes

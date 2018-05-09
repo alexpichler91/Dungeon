@@ -63,7 +63,7 @@ function Room(difficulty = 0) {
                     do {
                         obstructed = false
                         obsSize = createVector(floor(random(minObstacleX, maxObstacleX)), floor(random(minObstacleY, maxObstacleY)))
-                        obsPos = createVector(floor(random(-(this.size.x - obsSize.x) / 2, (this.size.x - obsSize.x) / 2)), floor(random(-(this.size.y - obsSize.y) / 2, (this.size.y - obsSize.y) / 2)))
+                        obsPos = createVector(floor(random(-(this.size.x - obsSize.x) / 2, floor((this.size.x - obsSize.x) / 2))), floor(random(-(this.size.y - obsSize.y) / 2, floor((this.size.y - obsSize.y) / 2))))
                         if(collideRectCircle(obsPos, obsSize, boi.pos, boi.size / 2)) {
                             obstructed = true
                         }
