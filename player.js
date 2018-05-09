@@ -5,6 +5,7 @@ function Player() {
     this.vel = createVector(0, 0)        // Geschwindigkeit ...
     this.maxSpeed = 3                    // maximale Geschwindigkeit
     this.acc = 0.9;                      // Wie schnell er (pro frame) Beschleunigt
+    this.angle=0
 
     this.draw = function(){
         if(!dead){
@@ -42,7 +43,8 @@ function Player() {
         push()
         translate(this.pos.x + width / 2, this.pos.y + height / 2.5)
         fill("red");
-        rotate(FieldOfView())
+        this.angle=FieldOfView()
+        rotate(this.angle)
         line(0,0,0,-12)
         ellipse(0,0,this.size,this.size)
         pop()

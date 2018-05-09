@@ -10,7 +10,8 @@ function Sword(){
     this.cooldown = 1
     this.active =false
     this.anglebuffer = 0 ;
-
+    this.attack_angle=90
+    this.attack_speed=5
 
     this.draw = function(){
         push()
@@ -23,7 +24,7 @@ function Sword(){
 
     this.animation = function(){
         if(this.active){
-           melee()
+           melee(this.size,this.attack_angle,this.attack_speed,"black")
         }
     }
 }
@@ -82,4 +83,20 @@ function findUndefined(arr){
         }
     }
     return i;
+}
+
+
+
+function melee(size,angle,angle_speed,color){
+    this.a_angle=boi.angle-angle/2
+    this.swish = function(){
+        push()
+
+        translate(boi.pos.x,boi.pos.y)
+        rotate(a_angle)
+        fill(color)
+        rect(0,boi.size/2,size.x,size.y)
+        this.a_angle+=angle_speeds
+        pop()
+    }
 }
