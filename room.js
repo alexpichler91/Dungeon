@@ -118,6 +118,7 @@ function Room(difficulty = 0) {
         }
     }
     this.generateAdjacent = function() {
+        let cnt = 0, len = this.doors.length
         if(!this.adjacentRoomsGenerated) {
             this.offset = createVector(-1, -1)
 
@@ -128,8 +129,9 @@ function Room(difficulty = 0) {
                             rooms[roomPos.x + this.offset.x] = []
                         }
                         if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] === undefined) {
-                            if(random(1) <= roomProbability || (roomPos == createVector(0, 0) && this.doors.length < 1)) {
+                            if(random(1) <= roomProbability || len + cnt <= 0) {
                                 rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
+                                cnt++
                             }
                             else {
                                 rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = null
