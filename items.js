@@ -19,13 +19,6 @@ function Sword(){
         translate(width/2,height/2.5)
         rect(this.pos.x,this.pos.y,this.size.x,this.size.y)
         pop()
-        this.animation()
-    }
-
-    this.animation = function(){
-        if(this.active){
-           melee(this.size,this.attack_angle,this.attack_speed,"black")
-        }
     }
 }
 
@@ -83,20 +76,4 @@ function findUndefined(arr){
         }
     }
     return i;
-}
-
-
-
-function melee(size,angle,angle_speed,color){
-    this.a_angle=boi.angle-angle/2
-    this.swish = function(){
-        push()
-
-        translate(boi.pos.x,boi.pos.y)
-        rotate(a_angle)
-        fill(color)
-        rect(0,boi.size/2,size.x,size.y)
-        this.a_angle+=angle_speeds
-        pop()
-    }
 }
