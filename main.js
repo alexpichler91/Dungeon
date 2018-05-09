@@ -5,6 +5,11 @@ let overlay
 let items
 let roomPos
 let spawnItem
+let type = {
+    OBSTACLE: 1,
+    ITEM: 2,
+    ENEMY: 3
+}
 
 function setup() {
     createCanvas(width, height)
@@ -14,7 +19,6 @@ function setup() {
     boi = new Player()
     rooms[roomPos.x][roomPos.y] = new Room()
     overlay = new Overlay()
-
     rooms[roomPos.x][roomPos.y].generateAdjacent()
     rooms[roomPos.x][roomPos.y].fillObstacles()
     SpawnItems();
@@ -24,6 +28,7 @@ function setup() {
 function draw() {
     background("lightgrey")
     rooms[roomPos.x][roomPos.y].draw()
+s
     boi.draw()
     overlay.draw()
     Items_Rooms[roomPos.x][roomPos.y].draw();

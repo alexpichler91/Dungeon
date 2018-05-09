@@ -1,9 +1,28 @@
-collideRectCircle = function(rectPos, rectSize, circlePos, r) {
+collideRectCircle = function(rectPos, rectSize, circlePos, r, tolerance) {
+    if(tolerance !== undefined) {
+        if(circlePos.x + r >= rectPos.x - (rectSize.x / 2) && circlePos.x - r <= rectPos.x + (rectSize.x / 2)) {
+            if(circlePos.y + r >= rectPos.y - (rectSize.y / 2) - (tolerance / 2) && circlePos.y + r <= rectPos.y - (rectSize.y / 2) + (tolerance / 2)) {
+                return "UP"
+            }
+            if(circlePos.y - r <= rectPos.y + (rectSize.y / 2) + (tolerance / 2) && circlePos.y - r >= rectPos.y + (rectSize.y / 2) - (tolerance / 2)) {
+                return "DOWN"
+            }
+        }
+        if(circlePos.y + r >= rectPos.y - (rectSize.y / 2) && circlePos.y - r <= rectPos.y + (rectSize.y / 2)) {
+            if(circlePos.x + r >= rectPos.x - (rectSize.x / 2) - (tolerance / 2) && circlePos.x + r <= rectPos.x - (rectSize.x / 2) + (tolerance / 2)) {
+                return "RIGHT"
+            }
+            if(circlePos.x - r <= rectPos.x + (rectSize.x / 2) + (tolerance / 2) && circlePos.x - r >= rectPos.x + (rectSize.x / 2) - (tolerance / 2)) {
+                return "LEFT"
+            }
+        }
+    }
     if(circlePos.x + r >= rectPos.x - (rectSize.x / 2) && circlePos.x - r <= rectPos.x + (rectSize.x / 2)) {
         if(circlePos.y + r >= rectPos.y - (rectSize.y / 2) && circlePos.y - r <= rectPos.y + (rectSize.y / 2)) {
             return true
         }
     }
+
     return false
 }
 

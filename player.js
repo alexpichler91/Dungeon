@@ -69,17 +69,19 @@ function Player() {
     }
 
     this.obstacleCollider = function() {
+        let collision
         for(obs of rooms[roomPos.x][roomPos.y].obstacles.getCollisions({pos: this.pos, size: createVector(this.size, this.size)})) {
-            if(this.vel.x > 0 && collideRectCircle(createVector(obs.pos.x - (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
+            collision = collideRectCircle(obs.pos, obs.size, this.pos, this.size / 2, this.vel.mag() + 1)
+            if(this.vel.x > 0 && collision == "RIGHT") {
                 this.vel.x = 0
             }
-            else if(this.vel.x < 0 && collideRectCircle(createVector(obs.pos.x + (obs.size.x / 2), obs.pos.y), createVector(0, obs.size.y), this.pos, this.size / 2)) {
+            else if(this.vel.x < 0 && collision == "LEFT") {
                 this.vel.x = 0
             }
-            else if(this.vel.y > 0 && collideRectCircle(createVector(obs.pos.x, obs.pos.y - (obs.size.y / 2)), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
+            else if(this.vel.y > 0 && collision == "UP") {
                 this.vel.y = 0
             }
-            else if(this.vel.y < 0 && collideRectCircle(createVector(obs.pos.x, obs.pos.y + (obs.size.y / 2)), createVector(obs.size.x, 0), this.pos, this.size / 2)) {
+            else if(this.vel.y < 0 && collision == "DOWN") {
                 this.vel.y = 0
             }
         }
