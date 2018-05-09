@@ -3,6 +3,7 @@ let Items_Rooms = [[]]
 let Items_Inv=[]
 
 function Sword(){
+    this.type="sword"
     this.pos = createVector(-50,-100)
     this.size = createVector(5,25)
     this.InvPlace = 10
