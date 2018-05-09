@@ -28,12 +28,6 @@ function setup() {
 function draw() {
     background("lightgrey")
     rooms[roomPos.x][roomPos.y].draw()
-    push()
-    translate(width / 2, height / 2.5)
-    noFill()
-    rooms[roomPos.x][roomPos.y].obstacles.draw()
-    pop()
-
     boi.draw()
     overlay.draw()
     Items_Rooms[roomPos.x][roomPos.y].draw();

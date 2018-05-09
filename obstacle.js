@@ -20,7 +20,7 @@ Obstacle = function(pos, size, tier = -1, hiddenItem = undefined) {
         push()
         fill('black')
         noStroke()
-        rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
+        rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
         pop()
     }
 }
@@ -32,7 +32,7 @@ Obstacle_Stone = function(pos, size) {
         push()
         fill('darkgrey')
         noStroke()
-        rect(this.pos.x, this.pos.y, this.size.x, this.size.y, 10)
+        rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
         pop()
     }
 }
@@ -51,7 +51,7 @@ Obstacle_Wood = function(pos, size, hiddenItem) {
 
 Obstacle_Dirt = function(pos, size, hiddenItem) {
     Obstacle.call(this, pos, size, 0, hiddenItem)
-    
+
     this.draw = function() {
         push()
         fill(102, 51, 0)

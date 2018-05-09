@@ -1,12 +1,12 @@
 let rooms = [[]]
-let roomProbability = 0.75
+let roomProbability = 0.5
 let minRoomX = 200
 let maxRoomX = 800
 let minRoomY = 150
 let maxRoomY = 600
 let doorHeight = 50
 let doorWidth = 20
-let doorFreeSpace = 50
+let doorFreeSpace = 55
 let cellHeight = 100
 let cellWidth = 100
 
@@ -128,7 +128,7 @@ function Room(difficulty = 0) {
                             rooms[roomPos.x + this.offset.x] = []
                         }
                         if(rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] === undefined) {
-                            if(random(1) <= roomProbability) {
+                            if(random(1) <= roomProbability || (roomPos == createVector(0, 0) && this.doors.length < 1)) {
                                 rooms[roomPos.x + this.offset.x][roomPos.y + this.offset.y] = new Room
                             }
                             else {

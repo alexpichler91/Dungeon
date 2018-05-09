@@ -2,7 +2,7 @@ class Quadtree {
     constructor(pos, size, maxObjects, maxLevel, currentLevel) {
         this.pos = pos || createVector(0, 0)
         this.size = size || createVector(width, heigth)
-        this.maxObjects = maxObjects || 5
+        this.maxObjects = maxObjects || 3
         this.maxLevel = maxLevel || 10
         this.currentLevel = currentLevel || 0
         this.nodes = []
@@ -32,7 +32,7 @@ class Quadtree {
             if(this.nodes[0] === undefined) {
                 this.split()
             }
-            for(let i = 0; i < this.objects.length; i++) {
+            for(let i = this.objects.length - 1; i >= 0; i--) {
                 idx = this.indexOf(this.objects[i])
 
                 if(idx !== -1) {
@@ -55,10 +55,10 @@ class Quadtree {
         }
         else if(rect.pos.y - (rect.size.y / 2) >= this.pos.y) {
             if(rect.pos.x + (rect.size.x / 2) < this.pos.x) {
-                idx = 2
+                idx = 3
             }
             else if(rect.pos.x - (rect.size.x / 2) >= this.pos.x) {
-                idx = 3
+                idx = 2
             }
         }
         return idx

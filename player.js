@@ -3,7 +3,7 @@ function Player() {
     this.pos = createVector(0, 0)        // Position des Spielers
     this.size = 20;                      // Größe des Spielers
     this.vel = createVector(0, 0)        // Geschwindigkeit ...
-    this.maxSpeed = 3                    // maximale Geschwindigkeit
+    this.maxSpeed = 3.5                  // maximale Geschwindigkeit
     this.acc = 0.9;                      // Wie schnell er (pro frame) Beschleunigt
     this.angle=0
 
@@ -25,25 +25,15 @@ function Player() {
             this.roomCollider()
             this.obstacleCollider()
             this.doorCollider()
-            if(this.vel.x >= this.maxSpeed) {
-                this.vel.x = this.maxSpeed
-            }
-            if(this.vel.x <= -this.maxSpeed) {
-                this.vel.x = -this.maxSpeed
-            }
-            if(this.vel.y >= this.maxSpeed) {
-                this.vel.y = this.maxSpeed
-            }
-            if(this.vel.y <= -this.maxSpeed) {
-                this.vel.y = -this.maxSpeed
-            }
+
+            this.vel.limit(this.maxSpeed)
             this.vel.mult(0.88)
             this.pos.add(this.vel)
         }
         push()
         translate(this.pos.x + width / 2, this.pos.y + height / 2.5)
         fill("red");
-        this.angle=FieldOfView()
+        this.angle = FieldOfView()
         rotate(this.angle)
         line(0,0,0,-12)
         ellipse(0,0,this.size,this.size)
