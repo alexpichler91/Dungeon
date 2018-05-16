@@ -74,3 +74,31 @@ function findUndefined(arr){
     }
     return i;
 }
+
+let anglebuffer=0
+let active=false
+
+function drawEquipt(item){
+
+    if(Items_Inv[overlay.equiptslot]!= undefined && Items_Inv[overlay.equiptslot].type=="sword"){
+        push()
+        translate(boi.pos.x + width / 2, boi.pos.y + height / 2.5)
+        rotate(boi.angle+PI*0.75+anglebuffer)
+        fill("black")
+        rect(0,boi.size,Items_Inv[overlay.equiptslot].size.x,Items_Inv[overlay.equiptslot].size.y)
+        pop()
+        if(active==true){
+            anglebuffer+=0.1
+            if(anglebuffer>=PI/2+0.1){
+                anglebuffer=0
+                active=false
+            }
+        }
+    }
+
+    if (mouseIsPressed) {
+        if (mouseButton === LEFT) {
+            active=true
+        }
+    }
+}
