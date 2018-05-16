@@ -42,6 +42,7 @@ function Overlay(){
     this.draw = function(){
         this.drawhotbar()
         this.drawhealthbar()
+        drawEquipt(Items_Inv[this.equiptslot])
         if(this.health<=0)
         {   
             textSize(50)
