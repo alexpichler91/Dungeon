@@ -3,15 +3,11 @@ let Items_Rooms = [[]]
 let Items_Inv=[]
 
 function Sword(){
+    this.type="sword"
     this.pos = createVector(-50,-100)
     this.size = createVector(5,25)
-    this.InvPlace = 10
-    this.collectable = true
-    this.cooldown = 1
-    this.active = false
-    this.anglebuffer = 0
-    this.attack_angle = 90
-    this.attack_speed = 5
+    this.collectable=true
+    this.collected=false
 
     this.draw = function(){
         push()
@@ -19,12 +15,6 @@ function Sword(){
         translate(width/2,height/2.5)
         rect(this.pos.x,this.pos.y,this.size.x,this.size.y)
         pop()
-    }
-
-    this.animation = function(){
-        if(this.active){
-           melee(this.size,this.attack_angle,this.attack_speed,"black")
-        }
     }
 }
 
@@ -43,9 +33,10 @@ function ItemsInRoom(){
 
     this.collect = function(i){
         if( Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable==true){
-
+            
             if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9){
-                    Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
+                Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collected=true;    
+                Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
                     Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
                 }
         }else   {
@@ -82,20 +73,4 @@ function findUndefined(arr){
         }
     }
     return i;
-}
-
-
-
-function melee(size,angle,angle_speed,color){
-    this.a_angle=boi.angle-angle/2
-    this.swish = function(){
-        push()
-
-        translate(boi.pos.x,boi.pos.y)
-        rotate(a_angle)
-        fill(color)
-        rect(0,boi.size/2,size.x,size.y)
-        this.a_angle+=angle_speeds
-        pop()
-    }
 }

@@ -31,8 +31,7 @@ function Overlay(){
             fill("green")
             rect(100 + (37 + 35)*(i+1)+i*35,height-this.hotbarsize.y/2,70,70)
         }
-        this.ItemDraw();
-        this.useItem();   
+        this.ItemDraw();  
     }
 
     this.drawhealthbar = function(){
@@ -49,22 +48,6 @@ function Overlay(){
             text("YOU ARE DEAD",width/2.8,height/2);
             dead=true;
         }
-    }
-
-    this.useItem = function	(){
-        if(this.cooldown<=0){
-            timer=0
-            
-            if(Items_Inv[this.equiptslot] != undefined && mouseIsPressed && mouseButton === LEFT){
-                Items_Inv[this.equiptslot].active=true;
-                this.cooldown = Items_Inv[this.equiptslot].cooldown * 60;
-                this.buffer = this.cooldown;
-                timer= frameCount
-            }
-        }else {
-            this.cooldown = timer - frameCount + this.buffer
-        }
-        
     }
 
     this.ItemDraw = function(){
