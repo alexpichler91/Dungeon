@@ -5,11 +5,7 @@ let overlay
 let items
 let roomPos
 let spawnItem
-let type = {
-    OBSTACLE: 1,
-    ITEM: 2,
-    ENEMY: 3
-}
+let projectiles = []
 
 function setup() {
     createCanvas(width, height)
@@ -28,8 +24,22 @@ function setup() {
 function draw() {
     background("lightgrey")
     rooms[roomPos.x][roomPos.y].draw()
-
+    for (projectile of projectiles) {
+        projectile.draw()
+    }
     boi.draw()
     overlay.draw()
     Items_Rooms[roomPos.x][roomPos.y].draw();
+    for(let i = projectiles.length - 1; i >= 0; i--) {
+        if(projectiles[i].checkCollisions()) {
+            projectiles.splice(i, 1)
+        }
+    }
+}
+
+
+function mousePressed() {
+    if(projectiles.length < 50) {
+        projectiles.push(new Projectile(boi.pos.copy(), createVector(5, 5), p5.Vector.fromAngle(boi.angle - HALF_PI, 2)))
+    }
 }

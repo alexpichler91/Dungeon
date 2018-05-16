@@ -6,12 +6,12 @@ function Sword(){
     this.pos = createVector(-50,-100)
     this.size = createVector(5,25)
     this.InvPlace = 10
-    this.collectable=true
+    this.collectable = true
     this.cooldown = 1
-    this.active =false
-    this.anglebuffer = 0 ;
-    this.attack_angle=90
-    this.attack_speed=5
+    this.active = false
+    this.anglebuffer = 0
+    this.attack_angle = 90
+    this.attack_speed = 5
 
     this.draw = function(){
         push()
@@ -19,7 +19,6 @@ function Sword(){
         translate(width/2,height/2.5)
         rect(this.pos.x,this.pos.y,this.size.x,this.size.y)
         pop()
-        this.animation()
     }
 
     this.animation = function(){
@@ -44,7 +43,7 @@ function ItemsInRoom(){
 
     this.collect = function(i){
         if( Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable==true){
-            
+
             if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9){
                     Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
                     Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)

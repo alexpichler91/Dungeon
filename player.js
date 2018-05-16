@@ -4,8 +4,8 @@ function Player() {
     this.size = 20;                      // Größe des Spielers
     this.vel = createVector(0, 0)        // Geschwindigkeit ...
     this.maxSpeed = 3.5                  // maximale Geschwindigkeit
-    this.acc = 0.9;                      // Wie schnell er (pro frame) Beschleunigt
-    this.angle=0
+    this.acc = 0.9;                      // Beschleunigung
+    this.angle = 0
 
     this.draw = function(){
         if(!dead){
