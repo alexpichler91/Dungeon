@@ -1,4 +1,4 @@
-let boi;
+let boi
 let width = 1200
 let height = 800
 let overlay

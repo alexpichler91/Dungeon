@@ -62,8 +62,9 @@ function Player() {
 
     this.obstacleCollider = function() {
         let collision
+        let mag = this.vel.mag() + 1
         for(obs of rooms[roomPos.x][roomPos.y].obstacles.getCollisions({pos: this.pos, size: createVector(this.size, this.size)})) {
-            collision = collideRectCircle(obs.pos, obs.size, this.pos, this.size / 2, this.vel.mag() + 1)
+            collision = collideRectCircle(obs.pos, obs.size, this.pos, this.size / 2, mag)
             if(this.vel.x > 0 && collision == "RIGHT") {
                 this.vel.x = 0
             }
