@@ -10,22 +10,19 @@ let doorFreeSpace = 55
 let cellHeight = 100
 let cellWidth = 100
 
-function Room(difficulty = 0) {
-    let door
-    let obstacle
-    let obsPos
-    let obsSize
-    let obstructed
-    this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
-    this.difficulty = difficulty
-    this.obstaclesFilled = false
-    this.adjacentRoomsGenerated = false
-    this.doors = []
-    this.items = []
-    this.obstacles = new Quadtree(createVector(0, 0), this.size)
-    this.obstacleCount
+class Room {
+    constructor(difficulty = 0) {
+        this.size = createVector(floor(random(minRoomX, maxRoomX)), floor(random(minRoomY, maxRoomY)))
+        this.difficulty = difficulty
+        this.obstaclesFilled = false
+        this.adjacentRoomsGenerated = false
+        this.doors = []
+        this.items = []
+        this.obstacles = new Quadtree(createVector(0, 0), this.size)
+        this.obstacleCount = 0
+    }
 
-    this.draw = function() {
+    draw() {
         push()
         translate(width / 2, height / 2.5)
         // draw room
@@ -35,7 +32,7 @@ function Room(difficulty = 0) {
         // draw doors
         strokeWeight(2)
         fill("lightgrey")
-        for(door of this.doors) {
+        for(let door of this.doors) {
             if(door.x != undefined) {
                 if(door.x != 0) {
                     rect(door.x * ((this.size.x - doorWidth) / 2), 0, doorWidth, doorHeight)
@@ -45,17 +42,22 @@ function Room(difficulty = 0) {
             }
         }
         // draw obstacles
-        for(obs of this.obstacles.getObjects()) {
+        for(let obs of this.obstacles.getObjects()) {
             if(obs != undefined)
                 obs.draw()
         }
         pop()
     }
-    this.addObstacle = function(obstacle) {
+    addObstacle(obstacle) {
         this.obstacles.add(obstacle)
         this.obstacleCount = this.obstacles.getObjects().length
     }
-    this.fillObstacles = function() {
+    fillObstacles() {
+        let obstacle
+        let obsPos
+        let obsSize
+        let obstructed
+
         if(!this.obstaclesFilled) {
             let roomSizeModifier = (this.size.x / maxRoomX) * (this.size.y / maxRoomY)
             for (let i = 0; i < maxObstaclesPerRoom; i++) {
@@ -67,7 +69,7 @@ function Room(difficulty = 0) {
                         if(collideRectCircle(obsPos, obsSize, boi.pos, boi.size / 2)) {
                             obstructed = true
                         }
-                        for(obs of this.obstacles.getObjects()) {
+                        for(let obs of this.obstacles.getObjects()) {
                             if(obs != undefined) {
                                 if(collideRectRect(obsPos, obsSize, obs.pos, obs.size)) {
                                     obstructed = true
@@ -75,7 +77,7 @@ function Room(difficulty = 0) {
                                 }
                             }
                         }
-                        for (door of this.doors) {
+                        for (let door of this.doors) {
                             if(door.x != undefined) {
                                 if(door.x != 0) {
                                     if(collideRectRect(obsPos, obsSize, createVector(door.x * ((this.size.x - doorWidth) / 2), 0), createVector(doorWidth + doorFreeSpace, doorHeight + doorFreeSpace * 2))) {
@@ -117,7 +119,7 @@ function Room(difficulty = 0) {
             this.obstaclesFilled = true
         }
     }
-    this.generateAdjacent = function() {
+    generateAdjacent() {
         let cnt = 0, len = this.doors.length
         if(!this.adjacentRoomsGenerated) {
             this.offset = createVector(-1, -1)
@@ -144,7 +146,7 @@ function Room(difficulty = 0) {
             this.adjacentRoomsGenerated = true
         }
     }
-    this.getDoors = function() {
+    getDoors() {
         this.offset = createVector(-1, -1)
         this.doors = []
         for(this.offset.x = -1; this.offset.x <= 1; this.offset.x++) {
