@@ -8,7 +8,6 @@ class Projectile {
 
     draw() {
         this.pos.add(this.vel)
-
         push()
         translate(this.pos.x + width / 2, this.pos.y + height / 2.5)
         fill("blue")
@@ -23,7 +22,7 @@ class Projectile {
         if(!collideRectCircle(createVector(0, 0), p5.Vector.sub(rooms[roomPos.x][roomPos.y].size, this.size), this.pos, this.size.x / 2)) {
             return true
         }
-        for(obs of rooms[roomPos.x][roomPos.y].obstacles.getCollisions({pos: this.pos, size: createVector(this.size, this.size)})) {
+        for(let obs of rooms[roomPos.x][roomPos.y].obstacles.getCollisions({pos: this.pos, size: createVector(this.size, this.size)})) {
             if(collideRectCircle(obs.pos, obs.size, this.pos, this.size.x / 2)) {
                 return true
             }

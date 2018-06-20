@@ -7,7 +7,7 @@ function Player() {
     this.acc = 0.9;                      // Beschleunigung
     this.angle = 0
 
-    this.draw = function(){
+    this.draw = function()  {
         if(!dead){
             if(keyIsDown(87)) {
                 this.vel.y-=this.acc;

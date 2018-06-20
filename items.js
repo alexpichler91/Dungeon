@@ -33,9 +33,9 @@ function ItemsInRoom(){
 
     this.collect = function(i){
         if( Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collectable==true){
-            
+
             if(collideRectCircle(Items_Rooms[roomPos.x][roomPos.y].itemArr[i].pos,Items_Rooms[roomPos.x][roomPos.y].itemArr[i].size,boi.pos,boi.size/2) && findUndefined(Items_Inv)<9){
-                Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collected=true;    
+                Items_Rooms[roomPos.x][roomPos.y].itemArr[i].collected=true;
                 Items_Inv[findUndefined(Items_Inv)]=Items_Rooms[roomPos.x][roomPos.y].itemArr[i]
                     Items_Rooms[roomPos.x][roomPos.y].itemArr.splice(i)
                 }
